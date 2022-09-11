@@ -17,13 +17,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Artists</title>
+        <title>My Music by Artists</title>
         <link rel="stylesheet" href="css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <h1>Artists</h1>
-        <a href="add.php">Add New Artist</a>
+        <h1>My Music by Artists</h1>
+        
         <div class="container mt-5"> 
             <div class="row mt-4">
              <?php
@@ -63,6 +63,7 @@
                 
             </div>
        </div>
+       <a href="add.php">Add New Artist</a>
     </body>
 </html>
 
