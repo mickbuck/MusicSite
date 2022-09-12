@@ -3,27 +3,27 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q= "SELECT * FROM album Where artist_id = $id order by UPPER(LTRIM(Replace(name, 'The', '')));";
+        $q= "SELECT * FROM album order by UPPER(LTRIM(Replace(name, 'The', '')));";
         $albumname=mysqli_query($sql,$q); 
-        $a= "SELECT * FROM artist Where id = $id order by UPPER(LTRIM(Replace(name, 'The', '')));";
+        $a= "SELECT * FROM artist order by UPPER(LTRIM(Replace(name, 'The', '')));";
         $artistname=mysqli_query($sql,$a);      
     }
 ?>
 <html>
-    <?php 
-    while ($artname=mysqli_fetch_array($artistname)) 
-            { ?>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><?php echo $artname['name']; ?></title>
+        <title>All Albums</title>
         <link rel="stylesheet" href="css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <br>
-        <h1><?php echo $artname['name']; ?></h1>
+        <h1>All Albums</h1>
         <div class="container mt-5"> 
             <div class="row mt-4">
+            <?php 
+    while ($artname=mysqli_fetch_array($artistname)) 
+            { ?>
              <?php
                   while ($qq=mysqli_fetch_array($albumname)) 
                   {
@@ -45,7 +45,7 @@
                                     <h6 class="card-title"><?php echo $arts['name']; ?></h6>                             
                                     <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
                                     <br>
-                                    <h6>Catalogue Number:</h6> <h7 class="card-title"><?php echo $qq['cat_number']; ?></h7><br><br>
+                                    <h6>Catalogue Number:</h6> <h7 class="card-title"><?php echo $qq['cat_number']; ?></h7>
                                     <?php $lab = "SELECT * FROM record_label WHERE id='$lart'"; 
                                         $label=mysqli_query($sql,$lab); 
                                         $labs=mysqli_fetch_array($label)?>
@@ -55,7 +55,7 @@
                             ?> 
                         </div>
                       </div>
-                </div>
+                </div><br>
                 <?php
                   }
                 ?>
@@ -66,3 +66,4 @@
        <br><a href="addalbum.php">Add New album</a>
     </body>
 </html>
+

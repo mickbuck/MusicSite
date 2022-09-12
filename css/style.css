@@ -26,10 +26,26 @@ h2, h3, h4, h5 {
 }
 
 col-lg-3 {
-       -ms-flex:0 0 22%;
-       flex:0 0 22%;
-       max-width:22%
+       -ms-flex:0 0 24%;
+       flex:0 0 24%;
+       max-width:24%;
+       height: 500px;
+       position: relative;
+       width: 100%;
+       padding-right: 15px;
+       padding-left: 15px;
 } 
 
-container
-{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+container {
+       width:100%;
+       padding-right:15px;
+       padding-left:15px;
+       margin-right:auto;
+       margin-left:auto
+}
+card-body {
+       -ms-flex: 1 1 auto;
+       flex: 1 1 auto;
+       min-height: 250px;
+       padding: 1.25rem;
+}
