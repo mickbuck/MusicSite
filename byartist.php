@@ -22,6 +22,7 @@
     <body>
         <br>
         <h1><?php echo $artname['name']; ?></h1>
+        <h1><a href=<?php echo $artname['MusicBrainz'] ; ?> >Music Brainz</a></h1>
         <div class="container mt-5"> 
             <div class="row mt-4">
              <?php
@@ -35,7 +36,7 @@
                                 $qart = $qq['artist_id'];
                                 $lart = $qq['record_label_id'];
                             ?>
-                            <?php $art = "SELECT name FROM artist WHERE id='$qart'"; 
+                            <?php $art = "SELECT * FROM artist WHERE id='$qart'"; 
                                   $artist=mysqli_query($sql,$art); ?>
                             <?php 
                                   while ($arts=mysqli_fetch_array($artist)) 
@@ -50,6 +51,7 @@
                                         $label=mysqli_query($sql,$lab); 
                                         $labs=mysqli_fetch_array($label)?>
                                     <h6>Record Label:</h6> <h7 class="card-title"><?php echo $labs['name'] ; ?></h7>   
+                                     
                                     <?php 
                                   }  
                             ?> 

@@ -1,13 +1,5 @@
 <?php
     include("include/config.php");
-
-    if (isset($_POST['btn']))
-    {
-      $date=$_POST['idate'];
-      $q="SELECT * FROM artist order by UPPER(LTRIM(Replace(name, 'The', '')));";
-      $query=mysqli_query($sql,$q);
-    } 
-	else 
 	{
       $q= "SELECT * FROM artist order by UPPER(LTRIM(Replace(name, 'The', '')));";
       $query=mysqli_query($sql,$q);
