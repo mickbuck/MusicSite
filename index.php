@@ -55,7 +55,7 @@
                 ?>
             </div>
        </div>
-       <a href="add.php">Add New Artist</a>
+       <!--  <a href="add.php">Add New Artist</a> --> 
     </body>
 </html>
 

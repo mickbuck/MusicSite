@@ -22,7 +22,7 @@
     <body>
         <br>
         <h1><?php echo $artname['name']; ?></h1>
-        <h1><a href=<?php echo $artname['MusicBrainz'] ; ?> >Music Brainz</a></h1>
+        <h2><a href=<?php echo $artname['MusicBrainz'] ; ?> target="_blank">Music Brainz</a></h2>
         <div class="container mt-5"> 
             <div class="row mt-4">
              <?php
@@ -65,6 +65,5 @@
                 ?>
             </div>
        </div>
-       <br><a href="addalbum.php">Add New album</a>
     </body>
 </html>

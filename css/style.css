@@ -19,22 +19,20 @@ header1,h1  {
        box-sizing: border-box;
 
 }
+
+a{ 
+       color: whitesmoke;
+}
   
+a:hover {
+       color: #8f9192;
+       text-decoration: none
+   }
+
 h2, h3, h4, h5 {
        font-family: 'Poppins', sans-serif;
        font-weight: 700;
 }
-
-col-lg-3 {
-       -ms-flex:0 0 24%;
-       flex:0 0 24%;
-       max-width:24%;
-       height: 500px;
-       position: relative;
-       width: 100%;
-       padding-right: 15px;
-       padding-left: 15px;
-} 
 
 container {
        width:100%;
