@@ -5,12 +5,12 @@
       $query=mysqli_query($sql,$q);
     }
 ?>
-
+</style>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Music by Artists</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css"> 
+        <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -25,7 +25,7 @@
              ?>
                 <div class="col-lg-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body1">
                              <?php  
                                 $qid = $qq['id'] ?>
                             <?php $t = "SELECT * from album WHERE artist_id=$qid";

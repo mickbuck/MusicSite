@@ -10,19 +10,25 @@
     }
 ?>
 <html>
+
     <?php 
     while ($artname=mysqli_fetch_array($artistname)) 
             { ?>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><?php echo $artname['name']; ?></title>
-        <link rel="stylesheet" href="css/bootstrap.min.css"> 
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+    <style> body {
+        background-image: url('<?php echo $artname['clear']; ?>');
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        }
+    </style>
         <br>
-        <h1><?php echo $artname['name']; ?></h1>
-        <h2><a href=<?php echo $artname['MusicBrainz'] ; ?> target="_blank">Music Brainz</a></h2>
+        <h1><img src="<?php echo $artname['banner'];?>" alt="" > </h1>
+        
         <div class="container mt-5"> 
             <div class="row mt-4">
              <?php
@@ -31,7 +37,7 @@
              ?>
                 <div class="col-lg-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body2">
                             <?php  
                                 $qart = $qq['artist_id'];
                                 $lart = $qq['record_label_id'];
@@ -42,28 +48,29 @@
                                   while ($arts=mysqli_fetch_array($artist)) 
                                   {
                             ?>
-                                    <h5 class="card-title"><?php echo $qq['name']; ?></h5>      
-                                    <h6 class="card-title"><?php echo $arts['name']; ?></h6>                             
-                                    <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
-                                    <br>
-                                    <h6>Catalogue Number:</h6> <h7 class="card-title"><?php echo $qq['cat_number']; ?></h7><br><br>
+                                    <h5 class="card-title"><?php echo $qq['name']; ?></h5>
+                                    <img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h6>
+                                    <b>Catalogue Number: </b><?php echo $qq['cat_number']; ?>
                                     <?php $lab = "SELECT * FROM record_label WHERE id='$lart'"; 
                                         $label=mysqli_query($sql,$lab); 
-                                        $labs=mysqli_fetch_array($label)?>
-                                    <h6>Record Label:</h6> <h7 class="card-title"><?php echo $labs['name'] ; ?></h7>   
+                                        $labs=mysqli_fetch_array($label)?><br>
+                                    <b>Record Label: </b><?php echo $labs['name'] ; ?></h6>   
                                      
                                     <?php 
                                   }  
                             ?> 
                         </div>
-                      </div>
+                      </div><br>
                 </div>
                 <?php
                   }
                 ?>
-                <?php } 
-                ?>
+                
             </div>
        </div>
-    </body>
+       <h2><a href="<?php echo $artname['MusicBrainz'] ; ?>"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:50px;height:50px;"></a></h2>
+       <?php } 
+                ?>
+</body>
+
 </html>
