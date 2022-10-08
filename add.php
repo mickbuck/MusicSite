@@ -1,60 +1,73 @@
-<html>
-<head>
-	<meta http-equiv="Content-Type"
-		content="text/html; charset=UTF-8">
-	<title>Add Artist</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-	<div class="container mt-5">
-		<h1>Add New Artist</h1>
-		<form action="add.php" method="POST">
-			<div class="form-group">
-				<label>Artist name</label>
-				<input type="text"
-					class="form-control"
-					placeholder="Artist name"
-					name="artna" />
-			</div>
-
-			<div class="form-group">
-				<label>Artist MusicBrainz Link</Link></label>
-				<input type="text"
-					class="form-control"
-					placeholder="Artist MusicBrainz Link"
-					name="artmb" />
-			</div>
-
-			<div class="form-group">
-				<label>Artist Image Link</Link></label>
-				<input type="text"
-					class="form-control"
-					placeholder="Artist Image Link"
-					name="artim" />
-			</div>
-
-			<div class="form-group">
-				<input type="submit"
-					value="Add"
-					class="btn btn-danger"
-					name="btn">
-			</div>
-		</form>
-	</div>
-
-	<?php
-		if(isset($_POST["btn"])) {
-			include("include/config.php");
-			$artna=$_POST['artna'];
-			$artim=$_POST['artim'];
-			$artmb=$_POST['artmb'];
-			$q="INSERT INTO artist (name,MusicBrainz,Image) VALUES ('$artna','$artmb','$artim')";
-
-			mysqli_query($sql,$q);
+<?php
+// Setting up PHP/MY SQL Connection
+include("include/config.php");
+    {
+		$id = ($_GET["id"]); ?>
+		<?php
+        $q= "SELECT * from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+    }
+        $wanted = mysqli_query($sql,$q);
+	if(isset($_POST['wanted']))
+	{
+		$name = mysqli_real_escape_string($sql,$_POST['Album']);
+		$id = mysqli_real_escape_string($sql,$_POST['Artist']);
+		$sql_insert =  "INSERT INTO wanted (album, artist_id) VALUES ('$name','$id')";
+		if(mysqli_query($sql,$sql_insert))
+		{
+			echo '<script>alert("Product added successfully")</script>';
 		}
-	?>
-</body>
+	}
+    if(isset($_POST['artist']))
+	{
+        $artist = mysqli_real_escape_string($sql,$_POST['Art']);
+		$sql_insert =  "INSERT INTO artist (name) VALUES ('$artist')";
+		if(mysqli_query($sql,$sql_insert))
+		{
+			echo '<script>alert("Artist added successfully")</script>';
+		}
+	}
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add To Database</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Adding Wanted Album to DB -->
+    <form method="POST">
+        <h1 class="white">Add New Wanted Album</h1>
+        <h2 class="white"><label>Name of Album:</label></h2>
+		<input type="text" name="Album" required>
+		<h2 class="white"><label>Select a Artist</label></h2>
+		<select name="Artist">
+			<?php
+				while ($data = mysqli_fetch_array($wanted,MYSQLI_ASSOC)):;
+			?>
+				<option value="<?php echo $data["id"];
+				?>">
+					<?php echo $data["name"];
+					?>
+				</option>
+			<?php
+				endwhile;
+			?>
+		</select>
+		<br>
+		<input type="submit" value="submit" name="wanted">
+	</form>
+
+    <!-- Adding new Artists to DB -->
+    <form method="POST">
+    <h1 class="white">Add New Artist</h1>
+        <h2 class="white"><label>Artist name:</label></h2>
+		<input type="text" class="form-control" placeholder="Artist name" name="Art" />
+		<div class="form-group">
+			<input type="submit" value="submit" class="btn btn-danger"	name="artist">
+		</div>
+	</form>
+	<br>
+</body>
 </html>

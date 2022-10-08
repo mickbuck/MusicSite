@@ -3,7 +3,7 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q= "SELECT * FROM album order by UPPER(LTRIM(Replace(name, 'The', '')));";
+        $q= "SELECT  * from wanted, artist where wanted.artist_id = artist.id order by UPPER(LTRIM(Replace(artist.name, 'The', '')))";
         $albumname=mysqli_query($sql,$q); 
         $a= "SELECT * FROM artist order by UPPER(LTRIM(Replace(name, 'The', '')));";
         $artistname=mysqli_query($sql,$a);      
