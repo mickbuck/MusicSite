@@ -12,11 +12,18 @@ include("../include/config.php");
 		$format = mysqli_query($sql,$f);
 		$label = mysqli_query($sql,$l);
 
-	if(isset($_POST['wanted']))
+	if(isset($_POST['album']))
 	{
+		#From Table to SQL
 		$name = mysqli_real_escape_string($sql,$_POST['Album']);
-		$id = mysqli_real_escape_string($sql,$_POST['Artist']);
-		$sql_insert =  "INSERT INTO wanted (album, artist_id) VALUES ('$name','$id')";
+		$artid = mysqli_real_escape_string($sql,$_POST['Artist']);
+		$formatid = mysqli_real_escape_string($sql,$_POST['media']);
+		$cost = mysqli_real_escape_string($sql,$_POST['cost']);
+		$record = mysqli_real_escape_string($sql,$_POST['record']);
+		$catno = mysqli_real_escape_string($sql,$_POST['Cat']);
+		$year = mysqli_real_escape_string($sql,$_POST['year']);
+		$sql_insert =  "INSERT INTO album (name, artist_id,format,cost,record_label_id,cat_number,year) VALUES ('$name','$artid','$formatid','$cost','$record','$catno','$year')";
+		
 		if(mysqli_query($sql,$sql_insert))
 		{
 			echo '<script>alert("Product added successfully")</script>';
@@ -63,6 +70,7 @@ include("../include/config.php");
 				endwhile;
 			?>
 		</select>
+		
 		<h2 class="white"><label>Enter Format and Album Catalogue Number:</label></h2>
 		<select name="media">
 			<?php
@@ -76,15 +84,15 @@ include("../include/config.php");
 			<?php
 				endwhile;
 			?>
-			</select>
-			<input type="text" name="Cat" required>
+		</select>
+
+			<input type="text" name="Cat">
 			<h2 class="white"><label>Select Record Label:</label></h2>
 			<select name="record">
 			<?php
 				while ($record = mysqli_fetch_array($label,MYSQLI_ASSOC)):;
 			?>
-				<option value="<?php echo $record["id"];
-				?>">
+				<option value="<?php echo $record["id"];?>">
 					<?php echo $record["name"];
 					?><br>
 				</option>
@@ -93,9 +101,12 @@ include("../include/config.php");
 			?>
 			</select>
 		<br>
-			
-	<h2 class="white"><label>Enter Cost:</label></h2>
-		<input type="text" name="cost" required>
+	<h2 class="white"><label>Enter Year:</label></h2>
+	<input type="number" min="1900" max="2099" name="year">
+	
 
-	<h2><input type="submit" value="submit" name="wanted"></h2><br>
+	<h2 class="white"><label>Enter Cost:</label></h2>
+	<input type="text" name="cost">
+
+	<h2><input type="submit" value="submit" name="album"></h2><br>
 	</form>
