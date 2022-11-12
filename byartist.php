@@ -6,7 +6,7 @@
         $q= "SELECT * FROM album Where artist_id = $id order by UPPER(LTRIM(Replace(name, 'The ', '')));";
         $albumname=mysqli_query($sql,$q); 
         $a= "SELECT * FROM artist Where id = $id order by UPPER(LTRIM(Replace(name, 'The ', '')));";
-        $artistname=mysqli_query($sql,$a);      
+        $artistname=mysqli_query($sql,$a);     
     }
 ?>
 <html>
@@ -50,7 +50,25 @@
                             ?>
                                     <h5 class="card-title"><?php echo $qq['name']; ?></h5>
                                     <img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h6>
-                                    <b>Catalogue Number: <br></b><?php echo $qq['cat_number']; ?>
+                                    <b>Catalogue Number: <br></b><?php echo $qq['cat_number']; ?><br> 
+                                    <?php 
+                                    $formats = $qq['format'];
+                                        if  ($formats == '1')
+                                        {?>
+                                            <b>Format: <br></b> CD
+                                                <?php
+                                        }
+                                        if  ($formats == '2')
+                                        {?>
+                                            <b>Format:<br></b> Vinyl
+                                                <?php
+                                        }
+                                        if  ($formats == '3')
+                                        {?>
+                                            <b>Format:<br></b> DVD
+                                                <?php
+                                        }
+                                        ?>
                                     <?php $lab = "SELECT * FROM record_label WHERE id='$lart'"; 
                                         $label=mysqli_query($sql,$lab); 
                                         $labs=mysqli_fetch_array($label)?><br>
