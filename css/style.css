@@ -113,6 +113,7 @@ h6 {
 .card-body2 {
        -ms-flex: 1 1 auto;
        flex: 1 1 auto;
+       min-height: 525px;
        padding: 1.25rem;
 }
 
