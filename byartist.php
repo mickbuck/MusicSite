@@ -55,17 +55,17 @@
                                     $formats = $qq['format'];
                                         if  ($formats == '1')
                                         {?>
-                                            <b>Format: <br></b> CD
+                                            <b>Format: </b> CD
                                                 <?php
                                         }
                                         if  ($formats == '2')
                                         {?>
-                                            <b>Format:<br></b> Vinyl
+                                            <b>Format:</b> Vinyl
                                                 <?php
                                         }
                                         if  ($formats == '3')
                                         {?>
-                                            <b>Format:<br></b> DVD
+                                            <b>Format:</b> DVD
                                                 <?php
                                         }
                                         ?>
