@@ -80,6 +80,12 @@
                                         <?php
                                         }
                                     ?>
+                                    <?php $cost = $qq['cost'];
+                                    if ($cost > '0') {
+                                        ?><b>Cost: </b>$<?php echo $qq['cost'];?><br> 
+                                        <?php
+                                        }
+                                    ?>
                                     <b>Record Label: <br></b><?php echo $labs['name'] ; ?></h6> <br>
                                     <?php $discogs = $qq['discogs'];
                                     if ($discogs > '0') {
