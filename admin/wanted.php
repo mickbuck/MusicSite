@@ -27,7 +27,7 @@
                         <div class="card-body1">
                                 <h5 class="card-title"><?php echo $qq['album']; ?></h5>
                                 <h6 class="card-title"><?php echo $qq['name']; ?></h6>
-                                <h5 class="card-title"><img src="../<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
+                                <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
                                 <?php
                             ?>
                         </div>
