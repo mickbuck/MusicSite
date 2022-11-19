@@ -1,7 +1,7 @@
 <?php
     include("../include/config.php");
 	{
-    $q = "SELECT  DISTINCT (artist.name), artist.id, artist.Image from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+    $q = "SELECT  DISTINCT (artist.name), artist.id, artist.Image from artist WHERE id != '1037' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
     $query=mysqli_query($sql,$q);
     }
 ?>
