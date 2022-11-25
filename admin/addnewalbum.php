@@ -22,25 +22,19 @@ include("../include/config.php");
 		$record = mysqli_real_escape_string($sql,$_POST['record']);
 		$catno = mysqli_real_escape_string($sql,$_POST['Cat']);
 		$year = mysqli_real_escape_string($sql,$_POST['year']);
-		$sql_insert =  "INSERT INTO album (name, artist_id,format,cost,record_label_id,cat_number,year) VALUES ('$name','$artid','$formatid','$cost','$record','$catno','$year')";
+		$onorder = mysqli_real_escape_string($sql,$_POST['onorder']);
+		if($onorder != '1') {
+			$onorder = '0';
+		}
+		$sql_insert =  "INSERT INTO album (name, artist_id,format,cost,record_label_id,cat_number,year,onorder) VALUES ('$name','$artid','$formatid','$cost','$record','$catno','$year','$onorder')";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
 			echo '<script>alert("Product added successfully")</script>';
 		}
 	}
-    if(isset($_POST['artist']))
-	{
-        $artist = mysqli_real_escape_string($sql,$_POST['Art']);
-		$sql_insert =  "INSERT INTO artist (name) VALUES ('$artist')";
-		if(mysqli_query($sql,$sql_insert))
-		{
-			echo '<script>alert("Artist added successfully")</script>';
-		}
-	}
+
 ?>
-
-
 
 <!--this is the display -->
 <!DOCTYPE html>
@@ -87,7 +81,7 @@ include("../include/config.php");
 		</select>
 
 			<input type="text" name="Cat">
-			<h2 class="white"><label>Select Record Label:</label></h2>
+			<h2 class="white"><label>Select Record Label:</label>
 			<select name="record">
 			<?php
 				while ($record = mysqli_fetch_array($label,MYSQLI_ASSOC)):;
@@ -99,14 +93,16 @@ include("../include/config.php");
 			<?php
 				endwhile;
 			?>
-			</select>
-		<br>
-	<h2 class="white"><label>Enter Year:</label></h2>
-	<input type="number" min="1900" max="2099" name="year">
+			</select></h2>
+	<h2 class="white"><label>Enter Year:</label>
+	<input type="number" min="1900" max="2099" name="year"> </h2>
 	
 
-	<h2 class="white"><label>Enter Cost:</label></h2>
-	<input type="text" name="cost">
+	<h2 class="white"><label>Enter Cost:</label>
+	<input type="number" step="any" name="cost">
+
+	<label>On Order:</label>
+	<input type="checkbox" name="onorder" value="1"></h2>
 
 	<h2><input type="submit" value="submit" name="album"></h2><br>
 	</form>
