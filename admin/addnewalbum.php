@@ -19,14 +19,25 @@ include("../include/config.php");
 		$artid = mysqli_real_escape_string($sql,$_POST['Artist']);
 		$formatid = mysqli_real_escape_string($sql,$_POST['media']);
 		$cost = mysqli_real_escape_string($sql,$_POST['cost']);
+		if($cost <= '0.01') {
+			$cost = '0.00';
+		}
+
 		$record = mysqli_real_escape_string($sql,$_POST['record']);
+		if($record <= '1') {
+			$record = '55';
+		}
+
 		$catno = mysqli_real_escape_string($sql,$_POST['Cat']);
 		$year = mysqli_real_escape_string($sql,$_POST['year']);
+		if($year <= '1990') {
+			$year = '0000';
+		}
 		$onorder = mysqli_real_escape_string($sql,$_POST['onorder']);
 		if($onorder != '1') {
 			$onorder = '0';
 		}
-		$sql_insert =  "INSERT INTO album (name, artist_id,format,cost,record_label_id,cat_number,year,onorder) VALUES ('$name','$artid','$formatid','$cost','$record','$catno','$year','$onorder')";
+		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id) VALUES ('$name','$artid','$formatid','$catno','$year',$record)";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
