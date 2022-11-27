@@ -3,7 +3,7 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.image, album.onorder, album.dateordered from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+        $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.image, album.onorder, album.dateordered from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered";
         $wanted=mysqli_query($sql,$q); 
     }
 ?>
