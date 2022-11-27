@@ -37,7 +37,7 @@ include("../include/config.php");
 		if($onorder != '1') {
 			$onorder = '0';
 		}
-		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id) VALUES ('$name','$artid','$formatid','$catno','$year',$record)";
+		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id,onorder,cost) VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost)";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
