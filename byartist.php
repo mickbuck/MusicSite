@@ -26,9 +26,13 @@
         background-position: right bottom;
         }
     </style>
-        <br>
         <h1><img src="<?php echo $artname['banner'];?>" alt="" > </h1>
-        
+        <?php $banner = $artname['banner'];
+                                    if ($banner < '0') {?>
+        <h1><b><?php echo $artname['name'];?></b> </h1>
+        <?php
+                                    }
+        ?>
         <div class="container mt-5"> 
             <div class="row mt-4">
              <?php
@@ -41,6 +45,7 @@
                             <?php  
                                 $qart = $qq['artist_id'];
                                 $lart = $qq['record_label_id'];
+                                $wart = $qq['officesite'];
                             ?>
                             <?php $art = "SELECT * FROM artist WHERE id='$qart'"; 
                                   $artist=mysqli_query($sql,$art); ?>
@@ -102,10 +107,22 @@
                 <?php
                   }
                 ?>
+
                 
             </div>
        </div>
-       <h2 class=tal><a href="../">Back</a></h2><h2><a href="<?php echo $artname['MusicBrainz'] ; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:50px;height:50px;"></a></h2>
+       <h2 class=tal><a href="../">Back</a></h2>
+       
+       <h2><?php $site = $artname['officalsite'];
+                                    if ($site > '0') {
+                                        ?><a href="<?php echo $artname['officalsite'];?>" target="_blank"><img src="images/site.png" style="height:100px;"></a>
+                                        <?php
+                                        }
+                                    ?>
+                                    <a href="<?php echo $artname['MusicBrainz'] ; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:100px;"></a><br></h2>
+       
+       
+       
        <?php } 
                 ?>
 </body>
