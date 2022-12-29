@@ -3,7 +3,7 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.image, album.onorder, album.dateordered from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered";
+        $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.image, album.onorder, album.dateordered, album.trackingnum from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered";
         $wanted=mysqli_query($sql,$q); 
     }
 ?>
@@ -23,6 +23,7 @@
                   {
              ?>
              <?php $ordered = $qq['dateordered'] ?>
+             <?php $tracking = $qq['trackingnum'] ?>
 
                 <div class="col-lg-3">
                     <div class="card">
@@ -30,6 +31,9 @@
                                 <h5 class="card-title"><?php echo $qq['name']; ?></h5>
                                 <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
                                 <h6 class="card-title"><b>Date Ordered: </b><?php echo $ordered; ?></h6>
+                                <?php if ($tracking > '0') { ?>
+                                <h6 class="card-title"><b>Tracking Number : </b><?php echo $tracking; ?></h6>
+                                <?php } ?>
                          </div>
                       </div><br>
                 </div>
