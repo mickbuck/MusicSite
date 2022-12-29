@@ -37,7 +37,11 @@ include("../include/config.php");
 		if($onorder != '1') {
 			$onorder = '0';
 		}
-		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id,onorder,cost) VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost)";
+		$wanted = mysqli_real_escape_string($sql,$_POST['wanted']);
+		if($wanted != '1') {
+			$wanted = '0';
+		}
+		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id,onorder,cost,wanted) VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost,$wanted)";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
@@ -113,7 +117,10 @@ include("../include/config.php");
 	<input type="number" step="any" name="cost">
 
 	<label>On Order:</label>
-	<input type="checkbox" name="onorder" value="1"></h2>
+	<input type="checkbox" name="onorder" value="1"><br>
+
+	<label>Wanted:</label>
+	<input type="checkbox" name="wanted" value="1"></h2>
 
 	<h2><input type="submit" value="submit" name="album"></h2><br>
 	</form>
