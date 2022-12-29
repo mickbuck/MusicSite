@@ -5,7 +5,33 @@
         $q= "SELECT * FROM album Where id = $id;";
         $albumname=mysqli_query($sql,$q); 
     }
+
+    if(isset($_POST['update']))
+	{
+        $id = ($_GET["id"]);
+		#From Table to SQL
+		$name = mysqli_real_escape_string($sql,$_POST['title']);
+        $format = mysqli_real_escape_string($sql,$_POST['format']);
+        $cat = mysqli_real_escape_string($sql,$_POST['cat']);
+        $year = mysqli_real_escape_string($sql,$_POST['year']);
+        $discogs = mysqli_real_escape_string($sql,$_POST['discogs']);
+        $image = mysqli_real_escape_string($sql,$_POST['image']);
+        $dateordered = mysqli_real_escape_string($sql,$_POST['dateordered']);
+        $onorder = mysqli_real_escape_string($sql,$_POST['onorder']);
+        $cost = mysqli_real_escape_string($sql,$_POST['cost']);
+        $tracking = mysqli_real_escape_string($sql,$_POST['tracking']);
+        $wanted = mysqli_real_escape_string($sql,$_POST['wanted']);
+
+        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted where id = '$id'";
+		
+		if(mysqli_query($sql,$sql_insert))
+		{
+			echo '<script>alert("Product added successfully")</script>';
+		}
+	}
+
 ?>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,109 +39,39 @@
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-    <style> body {
-        background-image: url('<?php echo $artname['clear']; ?>');
-        background-repeat: no-repeat;
-        background-position: right bottom;
-        }
-    </style>
-        <h1><img src="<?php echo $artname['banner'];?>" alt="" > </h1>
-        <?php $banner = $artname['banner'];
-                                    if ($banner < '0') {?>
-        <h1><b><?php echo $artname['name'];?></b> </h1>
-        <?php
-                                    }
-        ?>
-        <div class="container mt-5"> 
-            <div class="row mt-4">
-             <?php
-                  while ($qq=mysqli_fetch_array($albumname)) 
-                  {
-             ?>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body2">
-                            <?php  
-                                $qart = $qq['artist_id'];
-                                $lart = $qq['record_label_id'];
-                                $wart = $qq['officesite'];
-                            ?>
-                            <?php $art = "SELECT * FROM artist WHERE id='$qart'"; 
-                                  $artist=mysqli_query($sql,$art); ?>
-                            <?php 
-                                  while ($arts=mysqli_fetch_array($artist)) 
-                                  {
-                            ?>
-                                    <h5 class="card-title"><?php echo $qq['name']; ?></h5>
-                                    <img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h6>
-                                    <b>Catalogue Number: <br></b><?php echo $qq['cat_number']; ?><br> 
-                                    <?php 
-                                    $formats = $qq['format'];
-                                        if  ($formats == '1')
-                                        {?>
-                                            <b>Format: </b> CD
-                                                <?php
-                                        }
-                                        if  ($formats == '2')
-                                        {?>
-                                            <b>Format:</b> Vinyl
-                                                <?php
-                                        }
-                                        if  ($formats == '3')
-                                        {?>
-                                            <b>Format:</b> DVD
-                                                <?php
-                                        }
-                                        ?>
-                                    <?php $lab = "SELECT * FROM record_label WHERE id='$lart'"; 
-                                        $label=mysqli_query($sql,$lab); 
-                                        $labs=mysqli_fetch_array($label)?><br>
-
-                                    <?php $onorder = $qq['onorder'];
-                                    if ($onorder > '0') {
-                                        ?><b>On Order: </b>Yes <br>
-                                        <b>Date Ordered: </b><?php echo $qq['dateordered'];?> 
-                                        <?php
-                                        }
-                                    ?>
-                                    <?php $cost = $qq['cost'];
-                                    if ($cost > '0') {
-                                        ?><b>Cost: </b>$<?php echo $qq['cost'];?><br> 
-                                        <?php
-                                        }
-                                    ?>
-                                    <b>Record Label: <br></b><?php echo $labs['name'] ; ?></h6> <br>
-                                    <?php $discogs = $qq['discogs'];
-                                    if ($discogs > '0') {
-                                        ?><br><a href="<?php echo $qq['discogs'];?>" target="_blank"><img src="images/discogs.png" style="height:50px;"></a><br>
-                                        <?php
-                                        }
-                                    ?>
-                                    <?php 
-                                  }
-                            ?> 
-                        </div>
-                      </div><br>
-                </div>
-                <?php
-                  }
-                ?>
-
-                
+        <div class="container mt-5">
+        <div class="row mt-4">
+        <?php $qq=mysqli_fetch_array($albumname) ?>
+        <form method="POST">
+            <h1 class="white">Edit Album</h1>
+            <h2 class="white"><label>Album Name :</label>
+            <input type="text" name="title" value="<?php echo $qq['name'];?>"></h2>
+            <!-- To update with pull down list -->
+            <h2 class="white"><label>Format:</label>
+            <input type="text" name="format" value="<?php echo $qq['format'];?>" ></h2>
+            <h2 class="white"><label>Album Catalogue Number:</label>
+            <input type="text" name="cat" value="<?php echo $qq['cat_number'];?>" ></h2>
+            <h2 class="white"><label>Year:</label>
+            <input type="number" min="0000" max="2099" name="year" value="<?php echo $qq['year'];?>" ></h2>
+            <h2 class="white"><label>Discogs:</label>
+            <input type="text" name="discogs" value="<?php echo $qq['discogs'];?>" ></h2>
+            <h2 class="white"><label>Image:</label>
+            <input type="text" name="image" value="<?php echo $qq['image'];?>" ></h2>
+            <h2 class="white"><label>Date Ordered (To Fix):</label>
+            <input type="date" name="dateordered" value="<?php echo $qq['dateordered'];?>"></h2>
+            <h2 class="white"><label>On Ordered:</label>
+            <input type="text" name="onorder" value="<?php echo $qq['onorder'];?>"></h2>
+            <h2 class="white"><label>Cost:</label>
+            <input type="number" step="any" name="cost" value="<?php echo $qq['cost'];?>"></h2>
+            <h2 class="white"><label>Tracking:</label>
+            <input type="text" name="tracking" value="<?php echo $qq['trackingnum'];?>"></h2>
+            <h2 class="white"><label>Wanted:</label>
+            <input type="text" name="wanted" value="<?php echo $qq['wanted'];?>"> </h2>
+            <br><h2><input type="submit" value="Update" name="update"></h2>
+        </form>        
             </div>
        </div>
-       <h2 class=tal><a href="../">Back</a></h2>
-       
-       <h2><?php $site = $artname['officalsite'];
-                                    if ($site > '0') {
-                                        ?><a href="<?php echo $artname['officalsite'];?>" target="_blank"><img src="images/site.png" style="height:100px;"></a>
-                                        <?php
-                                        }
-                                    ?>
-                                    <a href="<?php echo $artname['MusicBrainz'] ; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:100px;"></a><br></h2>
-       
-       
-       
+       <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
 </body>
 
 </html>
