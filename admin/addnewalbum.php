@@ -110,7 +110,7 @@ include("../include/config.php");
 			?>
 			</select></h2>
 	<h2 class="white"><label>Enter Year:</label>
-	<input type="number" min="1900" max="2099" name="year"> </h2>
+	<input type="number" min="1950" max="2099" name="year"> </h2>
 	
 
 	<h2 class="white"><label>Enter Cost:</label>
