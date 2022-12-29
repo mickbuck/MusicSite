@@ -3,7 +3,7 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q= "SELECT  * from album, artist where album.artist_id = artist.id and album.onorder not like '1' and wanted like '1' order by UPPER(LTRIM(Replace(album.name, 'The ', '')))";
+        $q= "SELECT  artist.id, album.name AS albumname, artist.name AS artistname, album.image from album, artist where album.artist_id = artist.id and album.onorder not like '1' and wanted like '1' order by UPPER(LTRIM(Replace(album.name, 'The ', '')))";
         $wanted=mysqli_query($sql,$q);
     }
 ?>
@@ -25,8 +25,8 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="card-body1">
-                                <h5 class="card-title"><?php echo $qq['album']; ?></h5>
-                                <h6 class="card-title"><?php echo $qq['name']; ?></h6>
+                                <h5 class="card-title">Title: <?php echo $qq['albumname']; ?></h5>
+                                <h6 class="card-title">Artist: <?php echo $qq['artistname']; ?></h6>
                                 <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
                                 <?php
                             ?>
