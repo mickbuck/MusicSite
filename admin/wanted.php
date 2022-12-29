@@ -28,7 +28,7 @@
                                 <h5 class="card-title">Title: <?php echo $qq['albumname']; ?></h5>
                                 <h6 class="card-title">Artist: <?php echo $qq['artistname']; ?></h6>
                                 <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['albumid'];?>" style="width:200px;height:200px;"></h5>
-                                <br><input type="button" onclick="window.location='admin/editalbum.php?id=<?php echo $qq['albumid'];?>'" class="Redirect" value="Click Here To Edit"/>
+                                <br><input type="button" onclick="window.location='editalbum.php?id=<?php echo $qq['albumid'];?>'" class="Redirect" value="Click Here To Edit"/>
                         </div>
                       </div><br>
                 </div>
