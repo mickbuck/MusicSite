@@ -22,7 +22,7 @@
         $cost = mysqli_real_escape_string($sql,$_POST['cost']);
         $tracking = mysqli_real_escape_string($sql,$_POST['tracking']);
         $wanted = mysqli_real_escape_string($sql,$_POST['wanted']);
-        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', dateordered = '$dateordered', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted where id = '$id'";
+        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', image = '$image', dateordered = '$dateordered', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted where id = '$id'";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
