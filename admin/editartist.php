@@ -43,7 +43,7 @@
         <form method="POST">
             <h1 class="white">Edit Name</h1>
             <h2 class="white"><label>Artist Name :</label>
-            <input type="text" name="title" value="<?php echo $qq['name'];?>"  style="width:500px" ></h2>
+            <input type="text" name="title" value="<?php echo $qq['name'];?>"></h2>
             <!-- To update with pull down list -->
             <h2 class="white"><label>MusicBrainz:</label>
             <input type="text" name="musicbrainz" value="<?php echo $qq['MusicBrainz'];?>" style="width:500px" ></h2>
@@ -61,7 +61,7 @@
                     <td><input type="text" name="clear" value="<?php echo $qq['clear'];?>" style="width:500px" ></td>
                 </tr>
                 <tr>
-                    <td><img src="<?php echo $qq['Image'];?>" alt="<?php echo $qq['name'];?>"></td>
+                    <td><img src="<?php echo $qq['Image'];?>" alt="<?php echo $qq['name'];?>"   style="width:500px" ></td>
                     <td><img src="<?php echo $qq['banner'];?>" style="width:500px"></td>
                     <td><img src="<?php echo $qq['clear'];?>" style="width:500px"></td>
                 </tr>
