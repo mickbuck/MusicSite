@@ -1,5 +1,5 @@
 <?php
-    include("../include/config.php");
+    include("include/config.php");
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Wanted Media</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <br>
