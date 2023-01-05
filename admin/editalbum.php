@@ -26,7 +26,9 @@
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
-			echo '<script>alert("Product added successfully")</script>';
+		    echo '<script>alert("Album updated successfully")</script>';
+            $place = "editalbum.php?id=$id"; // replace, duh.
+            echo "<script>self.location='".$place."';</script>\n";
 		}
 	}
 
@@ -73,5 +75,4 @@
        </div>
        <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
 </body>
-
 </html>
