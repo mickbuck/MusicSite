@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Music by Artists</title>
-        <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -26,19 +25,19 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="card-body1">
-                             <?php  
-                                $qid = $qq['id'] ?>
-                            <?php $t = "SELECT * from album WHERE artist_id=$qid AND (wanted IS NULL OR wanted != '1') ";
-                                 $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1'";
-                                 $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2'";
-                                 $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1'";
-                            ?>
+                             <?php $qid = $qq['id'] ?>
+                                <?php $t = "SELECT * from album WHERE artist_id=$qid AND (wanted IS NULL OR wanted != '1') ";
+                                $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1'";
+                                $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2'";
+                                $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1'";
+                                ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Total: 
                             <?php if ($result = mysqli_query($sql, $t)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 printf("  %d\n", $rowcount);
-                             } ?><br>  CD: <?php if ($result = mysqli_query($sql, $cd)) {
+                             } ?>
+                             <br>  CD: <?php if ($result = mysqli_query($sql, $cd)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 printf("  %d\n", $rowcount);
                              } ?>  Vinyl: <?php if ($result = mysqli_query($sql, $vinyl)) {
