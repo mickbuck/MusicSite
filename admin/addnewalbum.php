@@ -41,7 +41,9 @@ include("../include/config.php");
 		if($wanted != '1') {
 			$wanted = '0';
 		}
-		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id,onorder,cost,wanted) VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost,$wanted)";
+		$dateordered = mysqli_real_escape_string($sql,$_POST['dateordered']);
+        $dateordered = date('Y-m-d', strtotime(str_replace('-', '/', $dateordered)));
+		$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id,onorder,cost,wanted,dateordered) VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost,$wanted,'$dateordered')";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
@@ -114,7 +116,10 @@ include("../include/config.php");
 	
 
 	<h2 class="white"><label>Enter Cost:</label>
-	<input type="number" step="any" name="cost">
+	<input type="number" step="any" name="cost"></h2>
+
+	<h2 class="white"><label>Date Ordered:</label>
+    <input type="date" name="dateordered" value="<?php echo date('Y-m-d'); ?>"> <br>
 
 	<label>On Order:</label>
 	<input type="checkbox" name="onorder" value="1"><br>
