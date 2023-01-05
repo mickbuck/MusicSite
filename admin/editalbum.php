@@ -17,12 +17,12 @@
         $discogs = mysqli_real_escape_string($sql,$_POST['discogs']);
         $image = mysqli_real_escape_string($sql,$_POST['image']);
         $dateordered = mysqli_real_escape_string($sql,$_POST['dateordered']);
+        $dateordered = date('Y-m-d', strtotime(str_replace('-', '/', $dateordered)));
         $onorder = mysqli_real_escape_string($sql,$_POST['onorder']);
         $cost = mysqli_real_escape_string($sql,$_POST['cost']);
         $tracking = mysqli_real_escape_string($sql,$_POST['tracking']);
         $wanted = mysqli_real_escape_string($sql,$_POST['wanted']);
-
-        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted where id = '$id'";
+        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', dateordered = '$dateordered', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted where id = '$id'";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
@@ -57,7 +57,7 @@
             <input type="text" name="discogs" value="<?php echo $qq['discogs'];?>" ></h2>
             <h2 class="white"><label>Image:</label>
             <input type="text" name="image" value="<?php echo $qq['image'];?>" ></h2>
-            <h2 class="white"><label>Date Ordered (To Fix):</label>
+            <h2 class="white"><label>Date Ordered:</label>
             <input type="date" name="dateordered" value="<?php echo $qq['dateordered'];?>"></h2>
             <h2 class="white"><label>On Ordered:</label>
             <input type="text" name="onorder" value="<?php echo $qq['onorder'];?>"></h2>
