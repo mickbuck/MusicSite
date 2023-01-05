@@ -56,7 +56,7 @@
                     <th><h2 class="white">Artist Clear Art</h2></th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="image" value="<?php echo $qq['Image'];?>" style="width:500px" ></td>
+                    <td><input type="text" name="image" value="<?php echo $qq['Image'];?>" style="width:250px" ></td>
                     <td><input type="text" name="banner" value="<?php echo $qq['banner'];?>" style="width:500px" ></td>
                     <td><input type="text" name="clear" value="<?php echo $qq['clear'];?>" style="width:500px" ></td>
                 </tr>
