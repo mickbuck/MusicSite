@@ -3,7 +3,7 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.image, album.onorder, album.dateordered, album.trackingnum from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered";
+        $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.id AS albumid, album.image, album.onorder, album.dateordered, album.trackingnum from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered";
         $wanted=mysqli_query($sql,$q); 
     }
 ?>
@@ -34,6 +34,8 @@
                                 <?php if ($tracking > '0') { ?>
                                 <h6 class="card-title"><b>Tracking Number : </b><?php echo $tracking; ?></h6>
                                 <?php } ?>
+                                <br><input type="button" onclick="window.location='editalbum.php?id=<?php echo $qq['albumid'];?>'" class="Redirect" value="Click Here To Edit"/>
+                                
                          </div>
                       </div><br>
                 </div>
