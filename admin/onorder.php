@@ -32,7 +32,8 @@
                                 <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['id'];?>" style="width:200px;height:200px;"></h5>
                                 <h6 class="card-title"><b>Date Ordered: </b><?php echo $ordered; ?></h6>
                                 <?php if ($tracking > '0') { ?>
-                                <h6 class="card-title"><b>Tracking Number : </b><?php echo $tracking; ?></h6>
+                                <h6 class="card-title"><b>Tracking: </b>
+                                <a href="<?php echo $tracking;?>" target="_blank"><img src="../images/site.png" style="height:50px;"><br> </a>
                                 <?php } ?>
                                 <br><input type="button" onclick="window.location='editalbum.php?id=<?php echo $qq['albumid'];?>'" class="Redirect" value="Click Here To Edit"/>
                                 
