@@ -23,7 +23,8 @@
         $tracking = mysqli_real_escape_string($sql,$_POST['tracking']);
         $wanted = mysqli_real_escape_string($sql,$_POST['wanted']);
         $barcode = mysqli_real_escape_string($sql,$_POST['barcode']);
-        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', image = '$image', dateordered = '$dateordered', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted, barcode = '$barcode' where id = '$id'";
+        $recordlabel = mysqli_real_escape_string($sql,$_POST['recordlabel']);
+        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', image = '$image', dateordered = '$dateordered', year = '$year', discogs = '$discogs',  onorder = '$onorder', cost = '$cost', trackingnum = '$tracking', wanted = '$wanted', barcode = '$barcode', record_label_id = '$recordlabel' where id = '$id'";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
@@ -56,6 +57,8 @@
             <input type="text" name="cat" value="<?php echo $qq['cat_number'];?>" ></h2>
             <h2 class="white"><label>Year:</label>
             <input type="number" min="0000" max="2099" name="year" value="<?php echo $qq['year'];?>" ></h2>
+            <h2 class="white"><label>Record Label:</label>
+            <input type="number" name="recordlabel" value="<?php echo $qq['record_label_id'];?>"> </h2>
             <h2 class="white"><label>Discogs:</label>
             <input type="text" name="discogs" value="<?php echo $qq['discogs'];?>" ></h2>
             <h2 class="white"><label>Image:</label>
