@@ -22,7 +22,8 @@
         $cost = mysqli_real_escape_string($sql,$_POST['cost']);
         $tracking = mysqli_real_escape_string($sql,$_POST['tracking']);
         $wanted = mysqli_real_escape_string($sql,$_POST['wanted']);
-        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', image = '$image', dateordered = '$dateordered', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted where id = '$id'";
+        $barcode = mysqli_real_escape_string($sql,$_POST['barcode']);
+        $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', image = '$image', dateordered = '$dateordered', year = $year, discogs = '$discogs',  onorder = $onorder, cost = $cost, trackingnum = '$tracking', wanted = $wanted, barcode = '$barcode' where id = '$id'";
 		
 		if(mysqli_query($sql,$sql_insert))
 		{
@@ -69,6 +70,8 @@
             <input type="text" name="tracking" value="<?php echo $qq['trackingnum'];?>"></h2>
             <h2 class="white"><label>Wanted:</label>
             <input type="text" name="wanted" value="<?php echo $qq['wanted'];?>"> </h2>
+            <h2 class="white"><label>Bar Code:</label>
+            <input type="text" name="barcode" value="<?php echo $qq['barcode'];?>"> </h2>
             <br><h2><input type="submit" value="Update" name="update"></h2>
         </form>        
             </div>
