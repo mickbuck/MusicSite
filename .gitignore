@@ -4,3 +4,4 @@ test.*
 *copy.php
 /css/bootstrap.*
 *admin/tolistento.php
+/admin/emojis/*
