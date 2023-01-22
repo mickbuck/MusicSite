@@ -55,11 +55,7 @@ if (isset($_POST['update'])) {
                     <input type="number" min="0000" max="2099" name="year" value="<?php echo $qq['year']; ?>">
                 </h2>
                 <h2 class="white"><label>Record Label:</label>
-                <?php $lab = "SELECT * FROM record_label WHERE id='$id'"; 
-                                        $label=mysqli_query($sql,$lab); 
-                                        $labs=mysqli_fetch_array($label)?><br>
-                                                        
-                <input type="number" name="recordlabel" value="<?php echo $lab['name']; ?>">
+                    <input type="number" name="recordlabel" value="<?php echo $qq['record_label_id']; ?>">
                 </h2>
                 <h2 class="white"><label>Discogs:</label>
                     <input type="text" name="discogs" value="<?php echo $qq['discogs']; ?>">
