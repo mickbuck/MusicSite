@@ -2,7 +2,7 @@
 include("../include/config.php"); {
     $id = ($_GET["id"]); ?>
 <?php
-    $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.id AS albumid, album.image, album.onorder, album.dateordered, album.trackingnum from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered, album.name";
+    $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.id AS albumid, album.image, album.onorder, album.dateordered, album.trackingnum, album.presale from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered, album.name";
     $wanted = mysqli_query($sql, $q);
 }
 ?>
@@ -24,7 +24,7 @@ include("../include/config.php"); {
             ?>
                 <?php $ordered = $qq['dateordered'] ?>
                 <?php $tracking = $qq['trackingnum'] ?>
-
+                <?php $presale = $qq['presale'] ?>
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="card-body1">
@@ -35,6 +35,10 @@ include("../include/config.php"); {
                                 <h6 class="card-title"><b>Tracking: </b>
                                     <a href="<?php echo $tracking; ?>" target="_blank"><img src="../images/site.png" style="height:50px;"><br> </a>
                                 <?php } ?>
+                            <?php if ($presale > '0') {
+                                ?>
+                                <h6 class="card-title"><b>Release Date: </b><?php echo $presale; ?></h6>
+                                <?php } ?>                                
                                 <br><input type="button" onclick="window.location='editalbum.php?id=<?php echo $qq['albumid']; ?>'" class="Redirect" value="Click Here To Edit" />
 
                         </div>
