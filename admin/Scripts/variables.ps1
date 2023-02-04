@@ -1,0 +1,5 @@
+$UserName = "kodi;"
+$Password = "kodi;"
+$Address = "192.168.20.249;"
+$Port = "3306;"
+$Database = "music"
