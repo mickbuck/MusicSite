@@ -1,0 +1,10 @@
+{
+    "SQL": [{
+    UserName:"",
+    Password:"",
+    Address:"",
+    Port:"3306",
+    Database:"music"
+    }
+    ]
+}
