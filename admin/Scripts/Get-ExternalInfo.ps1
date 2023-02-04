@@ -16,37 +16,33 @@ $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
 $DataSet = New-Object System.Data.DataSet
 $RecordCount = $dataAdapter.Fill($dataSet, "data")
 $data = $dataSet.Tables[0]
-ForEach ($test in $data){
-$test
-    $record=$test.record
-    $artist = $test.artist
-    $albumid = $test.id
+ForEach ($album in $data){
+    $record=$album.record
+    $artist = $album.artist
+    $albumid = $album.id
     $out = $null
-    $site = "https://musicbrainz.org/ws/2/release/?query=artist:$artist AND release:$record AND status:Official&fmt=json"
-    $releases = Invoke-WebRequest $site | ConvertFrom-Json
+    $mbsite = "https://musicbrainz.org/ws/2/release/?query=artist:$artist AND release:$record AND status:Official&fmt=json"
+    $releases = Invoke-WebRequest $mbsite | ConvertFrom-Json
     $releases = $releases| Select-Object -expand releases
     ForEach ($release in $releases){
-    If(!(Test-Path "/var/www/html/images/albums/$albumid.jpg")) {
-        $covers = $null
-        $release = $release.id
-        $cover = "https://coverartarchive.org/release/$release"
-        $cover
-        $covers = Invoke-WebRequest $cover | ConvertFrom-Json
-        $cover = $covers.images.image
+    $query = $null
+
+    If(!(Test-Path "$albumspath/$albumid.jpg")) {
+        $downloadurl = $null
+        $downloadurl = $cover + $release.id
+        $covers = Invoke-WebRequest $downloadurl | ConvertFrom-Json -ErrorAction SilentlyContinue
+        $covers = $covers.images.thumbnails.250
         If ($covers -notlike $null){
-            #$cover
-            Invoke-WebRequest -Uri "$cover" -OutFile "/var/www/html/images/albums/$albumid.jpg"
-            $savepath = "https://mymusic.mickbuck.gq/images/albums/$albumid.jpg"
-            If(Test-Path "/var/www/html/images/albums/$albumid.jpg") {
-            $Query = "update album Set image = '$savepath' Where id = '$albumid'"
+            Invoke-WebRequest -Uri "$covers" -OutFile "$albumspath\$albumid.jpg"
+            If(Test-Path "$albumspath\$albumid.jpg") {
+            $Query = "update album Set image = '$savepath/$albumid.jpg' Where id = '$albumid'"
             $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
             $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
             $DataSet = New-Object System.Data.DataSet
             $RecordCount = $dataAdapter.Fill($dataSet, "data")
             $DataSet.Tables[0]
         }
-    }
-
+}
 }
 }
 }
