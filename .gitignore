@@ -5,3 +5,4 @@ test.*
 /css/bootstrap.*
 *admin/tolistento.php
 /admin/emojis/*
+/admin/Scripts/varibles.json
