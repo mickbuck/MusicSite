@@ -1,3 +1,4 @@
+*admin/Scripts/variables.ps1
 /include/config.php
 /images/*
 test.*
@@ -5,5 +6,6 @@ test.*
 /css/bootstrap.*
 *admin/tolistento.php
 /admin/emojis/*
-*/admin/Scripts/variables.ps1
-*admin/Scripts/variables.ps1
+*variables.*
+
+admin/Scripts/variables.ps1
