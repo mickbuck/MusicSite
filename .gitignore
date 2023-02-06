@@ -5,4 +5,5 @@ test.*
 /css/bootstrap.*
 *admin/tolistento.php
 /admin/emojis/*
-/admin/Scripts/variables.ps1
+*/admin/Scripts/variables.ps1
+*admin/Scripts/variables.ps1
