@@ -3,7 +3,7 @@
 	{
 		$id = ($_GET["id"]); ?>
 		<?php
-        $q= "SELECT  artist.id, album.id AS albumid, album.name AS albumname, artist.name AS artistname, album.image from album, artist where album.artist_id = artist.id and album.onorder not like '1' and wanted like '1' order by UPPER(LTRIM(Replace(album.name, 'The ', '')))";
+        $q= "SELECT  artist.id, album.id AS albumid, album.name AS albumname, artist.name AS artistname, album.image from album, artist where album.artist_id = artist.id and album.onorder not like '1' and wanted like '1' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
         $wanted=mysqli_query($sql,$q);
     }
 ?>
