@@ -1,4 +1,4 @@
-*admin/Scripts/variables.ps1
+admin/Scripts/variables.ps1
 /include/config.php
 /images/*
 test.*
@@ -8,4 +8,3 @@ test.*
 /admin/emojis/*
 *variables.*
 
-admin/Scripts/variables.ps1
