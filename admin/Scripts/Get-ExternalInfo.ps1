@@ -28,6 +28,8 @@ $data = $dataSet.Tables[0]
 ForEach ($album in $data){
     $record=$album.record
     $artist = $album.artist
+    $artist = $artist.Replace('&','%26')
+    $artist = $artist.Replace('+','%2B')
     $albumid = $album.id
     $out = $null
     $mbsite = "https://musicbrainz.org/ws/2/release/?query=artist:$artist AND release:$record AND status:Official&fmt=json"
@@ -97,6 +99,8 @@ $RecordCount = $dataAdapter.Fill($dataSet, "data")
 $data = $dataSet.Tables[0]
 ForEach ($test in $data){
     $tofind=$test.name
+    $tofind = $tofind.Replace('&','%26')
+    $tofind = $tofind.Replace('+','%2B')
     $update = $test.id
     $out = $null
     $site = $artistimage+$tofind
@@ -131,6 +135,8 @@ $RecordCount = $dataAdapter.Fill($dataSet, "data")
 $data = $dataSet.Tables[0]
 ForEach ($test in $data){
     $tofind=$test.name
+    $tofind = $tofind.Replace('&','%26')
+    $tofind = $tofind.Replace('+','%2B')
     $update = $test.id
     $out = $null
     $site = $artistimage+$tofind
@@ -163,6 +169,8 @@ ForEach ($test1 in $DataSet.Tables){
     ForEach ($test in $test1){
     $mb = $null
     $tofind=$test.name
+    $tofind = $tofind.Replace('&','%26')
+    $tofind = $tofind.Replace('+','%2B')
     $update = $test.id
     $out = $null
     $site = "https://musicbrainz.org/ws/2/artist/?query=artist:$tofind&fmt=json"
