@@ -67,6 +67,8 @@ $RecordCount = $dataAdapter.Fill($dataSet, "data")
 $data = $dataSet.Tables[0]
 ForEach ($test in $data){
     $tofind=$test.name
+    $tofind = $tofind.Replace('&','%26')
+    $tofind = $tofind.Replace('+','%2B')
     $update = $test.id
     $out = $null
     $site = $artistimage+$tofind
