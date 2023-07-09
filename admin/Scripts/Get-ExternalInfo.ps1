@@ -190,7 +190,7 @@ ForEach ($test1 in $DataSet.Tables){
 }
 
 #Finding Album Discogs
-$Query = 'SELECT al.barcode As "barcode", ar.name AS "artist", al.cat_number AS "cat", al.discogs as "discogs", al.id AS "id" from album al,artist ar where al.artist_id = ar.id AND al.cat_number != " " AND (al.discogs = "" OR al.discogs IS NULL)'
+$Query = 'SELECT al.barcode As "barcode", ar.name AS "artist", al.cat_number AS "cat", al.discogs as "discogs", al.id AS "id" from album al,artist ar where al.artist_id = ar.id AND al.cat_number != " " AND (al.discogs = "" OR al.discogs IS NULL) AND (al.wanted = "0" AND al.onorder = "0")'
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
 $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
 $DataSet = New-Object System.Data.DataSet
