@@ -25,9 +25,18 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="card-body1">
-                                <h5 class="card-title">Title: <?php echo $qq['albumname']; ?></h5>
-                                <h6 class="card-title">Artist: <?php echo $qq['artistname']; ?></h6>
-                                <h5 class="card-title"><img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['albumid'];?>" style="width:200px;height:200px;"></h5>
+                        <h5 class="card-title"><?php echo $qq['name']; ?></h5>
+                            <h5 class="card-title"><img src="<?php echo $qq['image']; ?>" alt="<?php echo $qq['id']; ?>" style="width:200px;height:200px;"></h5>
+                            <h6 class="card-title"><b>Date Ordered: </b><?php echo $ordered; ?></h6>
+                            <?php if ($tracking > '0') { ?>
+                                <h6 class="card-title"><b>Tracking: </b>
+                                    <a href="<?php echo $tracking; ?>" target="_blank"><img src="../images/site.png" style="height:50px;"><br> </a>
+                                <?php } ?>
+                            <?php if ($presale > '0') {
+                                ?>
+                                <h6 class="card-title"><b>Release Date: </b><?php echo $presale; ?></h6>     
+                                <?php } ?>   
+
                         </div>
                       </div><br>
                 </div>
