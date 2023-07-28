@@ -126,8 +126,6 @@ ForEach ($test in $data){
     }
 }
 
-
-
 #finding Artist clear
 $Query = 'Select * from artist where clear LIKE "" OR clear is NULL'
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
@@ -145,6 +143,39 @@ ForEach ($test in $data){
     $out = Invoke-WebRequest $site | ConvertFrom-Json
     $art = $out| Select-Object -expand artists
     $artband = $art | Select-Object -expand strArtistClearart
+    IF(Test-path "$imagepath/$update/"){ }Else{
+    New-item -Path "$imagepath/$update/" -ItemType Directory}
+    If ($artband -notlike $NULL){
+    Invoke-WebRequest -Uri "$artband" -OutFile "$imagepath/$update/clear.jpg"
+    $albumsavepath = "$imagestore/$update/clear.jpg"
+    If(Test-Path "$imagepath/$update/clear.jpg") {
+        $Query = "update artist Set clear = '$albumsavepath' Where id = '$update'"
+        $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+        $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+        $DataSet = New-Object System.Data.DataSet
+        $RecordCount = $dataAdapter.Fill($dataSet, "data")
+        $DataSet.Tables[0]
+        }
+    }
+}
+
+#finding Artist clear
+$Query = 'Select * from artist where clear LIKE "" OR clear is NULL'
+$Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+$DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+$DataSet = New-Object System.Data.DataSet
+$RecordCount = $dataAdapter.Fill($dataSet, "data")
+$data = $dataSet.Tables[0]
+ForEach ($test in $data){
+    $tofind=$test.name
+    $tofind = $tofind.Replace('&','%26')
+    $tofind = $tofind.Replace('+','%2B')
+    $update = $test.id
+    $out = $null
+    $site = $artistimage+$tofind
+    $out = Invoke-WebRequest $site | ConvertFrom-Json
+    $art = $out| Select-Object -expand artists
+    $artband = $art | Select-Object -expand strArtistCutout
     IF(Test-path "$imagepath/$update/"){ }Else{
     New-item -Path "$imagepath/$update/" -ItemType Directory}
     If ($artband -notlike $NULL){
