@@ -4,6 +4,5 @@ admin/Scripts/variables.ps1
 test.*
 *copy.php
 /css/bootstrap.*
-*admin/tolistento.php
 *variables.*
 *Thumbs.db
