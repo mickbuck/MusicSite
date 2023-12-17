@@ -110,7 +110,7 @@
                 
             </div>
        </div>
-       <h2 class=tal><a href="../">Back</a></h2>
+       <h2 class=tal><a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Back</a></h2>
        
        <h2><?php $site = $artname['officalsite'];
                                     if ($site > '0') {
