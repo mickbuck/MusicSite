@@ -2,7 +2,7 @@
 
 <?php
 include("../include/config.php"); {
-    $q = "SELECT * from offlineartists where own != '1' and rating != '1' and rating !='2' and rating !='3' and rating !='4' and rating !='5' order by listenorder desc, rating desc, UPPER(LTRIM(Replace(offlineartists.name, 'The ', '')));";
+    $q = "SELECT * from artist where tolistento = '1' and own != '1' and rating != '1' and rating !='2' and rating !='3' and rating !='4' and rating !='5' order by listenorder desc, rating desc, UPPER(LTRIM(Replace(offlineartists.name, 'The ', '')));";
     $query = mysqli_query($sql, $q);
 }
 ?>
