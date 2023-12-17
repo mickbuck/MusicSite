@@ -69,6 +69,16 @@ if (isset($_POST['update'])) {
                 <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:500px"></td>
                 <td><img src="<?php echo $qq['banner']; ?>" style="width:500px"></td>
                 <td><img src="<?php echo $qq['clear']; ?>" style="width:500px"></td>
+                <h2 class="white"><label>To Listen To:</label>
+                    <input type="text" name="ToListenTo" value="<?php echo $qq['tolistento']; ?>">
+                    <label>Listening Order:</label>
+                    <input type="text" name="ListeningOrder" value="<?php echo $qq['listenorder']; ?>"><br>
+                    <label>Rating (0-5):</label>
+                    <input type="text" name="Rating" value="<?php echo $qq['rating']; ?>">
+                    <h2 class="white"><label>Random Site:</label>
+                    <input type="text" name="site" value="<?php echo $qq['site']; ?>" style="width:500px">
+                     </h2>    
+
             </tr>
         </table>
         <br><input type="submit" value="Update" name="update"></h2>

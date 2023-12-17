@@ -32,8 +32,9 @@ include("../include/config.php"); {
                             <?php $qid = $qq['id'] ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?>
                                 <a href="../byartist.php?id=<?php echo $qq['id']; ?>">
-                                <img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:200px;height:200px;"> <br><!--</a> -->
+                                <img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:200px;height:200px;"> <br></a>
                                 <br><img src="emojis/<?php echo $rating ?>.png" style="width: 25px;height:25px;"><br>
+                                <br><input type="button" onclick="window.location='editartist.php?id=<?php echo $qq['id']; ?>'" class="Redirect" value="Click Here To Edit" />
                             </h5>
                         </div>
                     </div><br>
