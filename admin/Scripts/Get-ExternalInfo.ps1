@@ -192,6 +192,42 @@ ForEach ($test in $data){
     }
 }
 
+#Finding Offline Artist Image
+$Connection.Open()
+$Query = 'Select * from offlineartists where Image LIKE "" OR Image is NULL'
+$Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+$DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+$DataSet = New-Object System.Data.DataSet
+$RecordCount = $dataAdapter.Fill($dataSet, "data")
+$data = $dataSet.Tables[0]
+ForEach ($test in $data){
+    $tofind=$test.name
+    $tofind=$tofind.Replace('&','%26')
+    $tofind=$tofind.Replace('+','%2B')
+    $update = $test.id
+    $out = $null
+    $site = "https://www.theaudiodb.com/api/v1/json/58424d43204d6564696120/search.php?s=$tofind"
+    $site
+    $out = Invoke-WebRequest $site | ConvertFrom-Json 
+    $art = $out| Select-Object -expand artists
+    $artband = $art | Select-Object -expand strArtistThumb
+    $artband = "$artband" + "/preview"
+
+    If(!(Test-Path "\\192.168.20.3\ftp\site\images\artists\$update.jpg")){
+    Invoke-WebRequest -Uri "$artband" -OutFile "\\192.168.20.3\ftp\site\images\artists\$update.jpg"  
+    $savepath = "../images/artists/$update.jpg"
+    If((Test-Path "\\192.168.20.3\ftp\site\images\artists\$update.jpg")){
+    $Query = "update offlineartists Set Image = '$savepath' Where id = '$update'"
+    $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+    $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+    $DataSet = New-Object System.Data.DataSet
+    $RecordCount = $dataAdapter.Fill($dataSet, "data")
+    $DataSet.Tables[0]}
+    }
+}
+$Connection.Close()
+
+
 #Find-MusicBrainz
 $Query = 'Select * from artist where MusicBrainz LIKE "" OR MusicBrainz is NULL'
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
