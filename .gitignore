@@ -5,5 +5,5 @@ test.*
 *copy.php
 /css/bootstrap.*
 *admin/tolistento.php
-/admin/emojis/*
 *variables.*
+*Thumbs.db
