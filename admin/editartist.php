@@ -15,7 +15,10 @@ if (isset($_POST['update'])) {
     $banner = mysqli_real_escape_string($sql, $_POST['banner']);
     $clear = mysqli_real_escape_string($sql, $_POST['clear']);
     $tolistento = mysqli_real_escape_string($sql, $_POST['tolistento']);
-    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento' where id = '$id'";
+    $listenorder = mysqli_real_escape_string($sql, $_POST['listenorder']);
+    $rating = mysqli_real_escape_string($sql, $_POST['rating']);
+    $site = mysqli_real_escape_string($sql, $_POST['site']);
+    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', listenorder = '$listenorder', rating = '$rating', site = '$site' where id = '$id'";
 
     if (mysqli_query($sql, $sql_insert)) {
         echo '<script>alert("Artist updated successfully")</script>';
@@ -69,9 +72,9 @@ if (isset($_POST['update'])) {
             <tr>
                 <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:500px">
                 <form action="upload.php" method="post" enctype="multipart/form-data">
-                <h3 class="white">Select Image File to Upload:
+                <!--<h3 class="white">Select Image File to Upload:
                 <input type="file" name="file"><br>
-                <input type="submit" name="submit" value="Upload"></h3>
+                <input type="submit" name="submit" value="Upload"></h3>-->
                 </form>
             </td>
                 <td><img src="<?php echo $qq['banner']; ?>" style="width:500px"></td>
