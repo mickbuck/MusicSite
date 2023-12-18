@@ -71,11 +71,14 @@ if (isset($_POST['update'])) {
             </tr>
             <tr>
                 <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:500px">
-                <form action="upload.php" method="post" enctype="multipart/form-data">
-                <!--<h3 class="white">Select Image File to Upload:
-                <input type="file" name="file"><br>
-                <input type="submit" name="submit" value="Upload"></h3>-->
+                
                 </form>
+                <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="thumb">
+</form>
+
             </td>
                 <td><img src="<?php echo $qq['banner']; ?>" style="width:500px"></td>
                 <td><img src="<?php echo $qq['clear']; ?>" style="width:500px"></td>
