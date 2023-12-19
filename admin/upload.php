@@ -2,6 +2,13 @@
 include("../include/config.php"); {
     $id = ($_GET["id"]);
 }
+?>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><?php echo $artname['name']; ?></title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<?php
 
 $target_dir = "../images/" . "$id" . "/";
 $band_file = $target_dir . basename($_FILES["bandupload"]["name"]);
@@ -86,8 +93,8 @@ if($bandFileType != "jpg" && $bandFileType != "png" && $bandFileType != "jpeg"
 && $bandFileType != "gif" && $bannerFileType != "jpg" && $bannerFileType != "png" && $bannerFileType != "jpeg"
 && $bannerFileType != "gif" && $clearFileType != "jpg" && $clearFileType != "png" && $clearFileType != "jpeg"
 && $clearFileType != "gif") {
-   echo "  
-   Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+   echo nl2br ("  
+   Sorry, \n  only JPG, JPEG, PNG & GIF files are allowed.");
    $uploadOk = 0;
 }
 
@@ -146,3 +153,4 @@ if ($banner == '1'){
     }
    }
 ?>
+<h2 class=tal><a href="javascript:history.back()">Back</a></h2>
