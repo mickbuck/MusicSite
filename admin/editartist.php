@@ -52,6 +52,15 @@ if (isset($_POST['update'])) {
         <h2 class="white"><label>Website:</label>
             <input type="text" name="website" value="<?php echo $qq['officalsite']; ?>" style="width:500px">
         </h2>
+        <h2 class="white"><label>To Listen To:</label>
+            <input type="text" name="tolistento" value="<?php echo $qq['tolistento']; ?>">
+            <label>Listening Order:</label>
+            <input type="text" name="listenorder" value="<?php echo $qq['listenorder']; ?>"><br>
+            <label>Rating (0-5):</label>
+            <input type="text" name="rating" value="<?php echo $qq['rating']; ?>">
+            <h2 class="white"><label>Random Site:</label>
+            <input type="text" name="site" value="<?php echo $qq['site']; ?>" style="width:500px">
+        </h2>   
         <table class="center">
             <tr>
                 <th>
@@ -65,45 +74,36 @@ if (isset($_POST['update'])) {
                 </th>
             </tr>
             <tr>
-                <td><input type="text" name="image" value="<?php echo $qq['Image']; ?>" style="width:500px"></td>
-                <td><input type="text" name="banner" value="<?php echo $qq['banner']; ?>" style="width:500px"></td>
-                <td><input type="text" name="clear" value="<?php echo $qq['clear']; ?>" style="width:500px"></td>
+                <td><input type="text" name="image" value="<?php echo $qq['Image']; ?>" style="width:350px"></td>
+                <td><input type="text" name="banner" value="<?php echo $qq['banner']; ?>" style="width:350px"></td>
+                <td><input type="text" name="clear" value="<?php echo $qq['clear']; ?>" style="width:350px"></td>
             </tr>
             <tr>
-                <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:500px">
-                </form>
+                <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:300px">
                     <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
-                    <h3>Select image to upload:
+                    <h4 class="white">Select image to upload:<br>
                     <input type="file" name="bandupload" id="bandupload"><br>
-                    <input type="submit" value="Upload Image" name="band"></h3>
+                    <input type="submit" value="Upload Image" name="band"></h4>
                 </form>
             </td>
-                <td><img src="<?php echo $qq['banner']; ?>" style="width:500px">
+                <td><img src="<?php echo $qq['banner']; ?>" style="width:300px">
                     </form>
                         <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
-                        <h3>Select image to upload:
+                        <h4 class="white">Select image to upload:<br>
                         <input type="file" name="bannerupload" id="bannerupload"><br>
-                        <input type="submit" value="Upload Image" name="banner"></h3>
+                        <input type="submit" value="Upload Image" name="banner"></h4>
                     </form>
                 </td>
                 
-                <td><img src="<?php echo $qq['clear']; ?>" style="width:500px">
+                <td><img src="<?php echo $qq['clear']; ?>" style="width:300px">
                     </form>
                         <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
-                        <h3>Select image to upload:
+                        <h4 class="white">Select image to upload:<br>
                         <input type="file" name="clearupload" id="clearupload"><br>
-                        <input type="submit" value="Upload Image" name="clear"></h3>
+                        <input type="submit" value="Upload Image" name="clear"></h4>
                     </form>
                 </td>
-                <h2 class="white"><label>To Listen To:</label>
-                    <input type="text" name="tolistento" value="<?php echo $qq['tolistento']; ?>">
-                    <label>Listening Order:</label>
-                    <input type="text" name="listenorder" value="<?php echo $qq['listenorder']; ?>"><br>
-                    <label>Rating (0-5):</label>
-                    <input type="text" name="rating" value="<?php echo $qq['rating']; ?>">
-                    <h2 class="white"><label>Random Site:</label>
-                    <input type="text" name="site" value="<?php echo $qq['site']; ?>" style="width:500px">
-                     </h2>    
+                 
 
             </tr>
         </table>

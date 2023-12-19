@@ -49,7 +49,7 @@ a:hover {
        text-decoration: none
    }
 
-h2, h3, h4, h5, h6 {
+h2, h3, h5, h6 {
        font-family: 'Poppins', sans-serif;
        font-weight: 700;
        margin-top: 0;
@@ -58,6 +58,17 @@ h2, h3, h4, h5, h6 {
 
 h2.white {
     color: whitesmoke;
+}
+
+h4.white {
+    text-align: center;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 350;
+    align-self: center;
 }
 
 h2.tAl {
