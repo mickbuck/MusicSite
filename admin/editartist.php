@@ -85,8 +85,8 @@ if (isset($_POST['update'])) {
                     <h4 class="white">Select image to upload:<br>
                     <input type="file" name="bandupload" id="bandupload"><br>
                     <input type="submit" value="Upload Image" name="band"></h4>
-                </form>
-            </td>
+                    </form>
+                </td>
                 <td><img src="<?php echo $qq['banner']; ?>" style="width:300px">
                     </form>
                         <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
