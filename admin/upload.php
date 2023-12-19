@@ -1,9 +1,13 @@
 <?php
-$id = ($_GET["id"]);
-$target_dir = "../images/artists/";
+include("../include/config.php"); {
+    $id = ($_GET["id"]);
+    $sql_insert =  "UPDATE artist Set Image = '$image' where id = '$id'";
+}
+
+$target_dir = "../images/" . "$id" . "/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$target_file = $target_dir . "$id." . $imageFileType;
+$target_file = $target_dir . "band." . $imageFileType;
 
 $uploadOk = 1;
 
@@ -45,7 +49,12 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 // if everything is ok, try to upload file
  } else {
    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+    $band = str_replace("../","https://mymusic.mickbuck.com/","$target_file");
+    $sql_insert =  "UPDATE artist Set Image = '$band' where id = '$id'";
+    if (mysqli_query($sql, $sql_insert)) {
      echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+    }
    } else {
     echo "Sorry, there was an error uploading your file.";
    }
