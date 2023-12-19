@@ -79,6 +79,7 @@ if (isset($_POST['update'])) {
                 <td><input type="text" name="clear" value="<?php echo $qq['clear']; ?>" style="width:350px"></td>
             </tr>
             <tr>
+            </form>
                 <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:300px">
                     <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
                     <h4 class="white">Select image to upload:<br>
