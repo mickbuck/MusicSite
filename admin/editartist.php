@@ -71,17 +71,30 @@ if (isset($_POST['update'])) {
             </tr>
             <tr>
                 <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:500px">
-                
                 </form>
                     <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
                     <h3>Select image to upload:
-                    <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                    <input type="submit" value="Upload Image" name="thumb"></h3>
+                    <input type="file" name="bandupload" id="bandupload"><br>
+                    <input type="submit" value="Upload Image" name="band"></h3>
                 </form>
-
             </td>
-                <td><img src="<?php echo $qq['banner']; ?>" style="width:500px"></td>
-                <td><img src="<?php echo $qq['clear']; ?>" style="width:500px"></td>
+                <td><img src="<?php echo $qq['banner']; ?>" style="width:500px">
+                    </form>
+                        <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
+                        <h3>Select image to upload:
+                        <input type="file" name="bannerupload" id="bannerupload"><br>
+                        <input type="submit" value="Upload Image" name="banner"></h3>
+                    </form>
+                </td>
+                
+                <td><img src="<?php echo $qq['clear']; ?>" style="width:500px">
+                    </form>
+                        <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
+                        <h3>Select image to upload:
+                        <input type="file" name="clearupload" id="clearupload"><br>
+                        <input type="submit" value="Upload Image" name="clear"></h3>
+                    </form>
+                </td>
                 <h2 class="white"><label>To Listen To:</label>
                     <input type="text" name="tolistento" value="<?php echo $qq['tolistento']; ?>">
                     <label>Listening Order:</label>
