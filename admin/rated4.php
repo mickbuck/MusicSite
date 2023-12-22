@@ -29,7 +29,7 @@ include("../include/config.php"); {
                         <div class="card-body1">
                             <?php $qid = $qq['id'] ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?>
-                                <!-- <a href="../byartist.php?id=<?php echo $qq['id']; ?>"> -->
+                                <a href="../byartist.php?id=<?php echo $qq['id']; ?>">
                                 <img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:200px;height:200px;"> <br><!--</a> -->
                                 <?php if ($lidarr > '0') { ?>
                                 <h6 class="card-title"><b>On Lidarr: </b>
