@@ -40,6 +40,7 @@ include("../include/config.php"); {
                                     <?php echo $tracking; ?><img src="emojis/cross.png" style="height:25px;"><br>
                                 <?php } ?>
                                 <br><img src="emojis/<?php echo $qq['rating'] ?>.png" style="width: 25px;height:25px;"><br>
+                                <br><input type="button" onclick="window.location='editartist.php?id=<?php echo $qq['id']; ?>'" class="Redirect" value="Click Here To Edit" />
 
                             </h5>
                         </div>
