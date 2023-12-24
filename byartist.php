@@ -113,17 +113,33 @@
        <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
        
        <h2><?php $site = $artname['officalsite'];
+                     $other = $artname['site'];
                                     if ($site > '0') {
                                         ?><a href="<?php echo $artname['officalsite'];?>" target="_blank"><img src="images/site.png" style="height:100px;"></a>
                                         <?php
-                                        }
+                                        } ?>
+                                        
+                                    <a href="<?php echo $artname['MusicBrainz'] ; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:100px;"></a>
+                                    <?php if ($other > '0') {
+                                            if (str_contains($other, 'youtube')) { 
+                                            ?><a href="<?php echo $artname['site'];?>" target="_blank"><img src="images/youtube.png" style="height:100px;"></a> 
+                                            <?php 
+                                                } 
+                                            }
+                                            if (str_contains($other, 'facebook')) { 
+                                                ?><a href="<?php echo $artname['site'];?>" target="_blank"><img src="images/facebook.png" style="height:100px;"></a> 
+                                                <?php 
+                                                    } 
+                                                
                                     ?>
-                                    <a href="<?php echo $artname['MusicBrainz'] ; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:100px;"></a><br></h2>
+                                
+                                
+                                
+                                
+                                <br></h2>
        
        
        
-       <?php } 
-                ?>
+       <?php } ?>
 </body>
-
 </html>
