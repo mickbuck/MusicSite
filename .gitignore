@@ -1,7 +1,7 @@
 admin/Scripts/variables.ps1
 /include/config.php
 /images/*
-test.*
+test*.*
 *copy.php
 /css/bootstrap.*
 *variables.*
