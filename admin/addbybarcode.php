@@ -11,6 +11,8 @@ include("../include/config.php"); {
     <link rel="stylesheet" href="../css/style.css">
     </head>
 <body>
+<br>
+    <h1>Album from Barcode</h1>
 <?php
 $connect_api_url = "https://api.discogs.com/database/search?barcode=$barcode&per_page=1&type=release&$discogs";
 $connect_api_key = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
@@ -26,7 +28,8 @@ foreach ($data['results'] as $result) { ?>
             <?php $title = $result['title'];
             $album = strstr($title, '-');
             $album = str_replace('-', "", $album);?>
-            <h4><b>Title:</b><?php echo $album; ?><br></a>
+            <h2 class="white"><label>Album:</label>
+            <input type="text" name="album" value="<?php echo $album; ?>" style="width:250px"></br>
             <?php $artist = strstr($title,'-', true );
             $substr = ")";
             if (strpos($artist, $substr) !== false)
@@ -34,15 +37,21 @@ foreach ($data['results'] as $result) { ?>
                     $artist = strstr($artist,'(', true );
                 }
             else
-                { }
+                {}
             ?>
-            <b>Artist: </b><?php echo $artist; ?><br>
+            <label>Artist:</label>
+            <input type="text" name="artist" value="<?php echo $artist; ?>" style="width:250px"></br>
             <b>Release Year:</b> <?php echo $result['year']; ?><br>
-            <b>Catalogue Number: </b><?php echo $result['catno']; ?><br>
-            <b>Record Label: </b><?php echo $result['label'][0]; ?><br>
-            <b>Discogs Link: </b><?php echo str_replace('api.discogs.com/releases','www.discogs.com/release', $result['resource_url']); ?> <br></h4>
-            <b>Barcode: </b><?php echo $barcode; ?><br>;
-            <?php $image = $result['cover_image'];?>
+            <label>Catalogue Number:</label>
+            <input type="text" name="catno" value="<?php echo $result['catno']; ?>" style="width:250px"></br>
+            <label>Record Label:</label>
+            <input type="text" name="catno" value="<?php echo $result['label'][0]; ?>" style="width:250px"></br>
+            <label>Discogs Link:</label>
+            <input type="text" name="catno" value="<?php echo str_replace('api.discogs.com/releases','www.discogs.com/release', $result['resource_url']); ?>" style="width:250px"></br>
+            <label>Barcode:</label>
+            <input type="text" name="catno" value="<?php echo $barcode; ?>" style="width:250px"></br>
+                        
+            <?php $image = $result['cover_image'];?></h2>
             <img src=<?php echo $image ?> style="height:500px"><br>
         <?php } 
     ?>
