@@ -41,7 +41,8 @@ foreach ($data['results'] as $result) { ?>
             ?>
             <label>Artist:</label>
             <input type="text" name="artist" value="<?php echo $artist; ?>" style="width:250px"></br>
-            <b>Release Year:</b> <?php echo $result['year']; ?><br>
+            <label>Year:</label>
+            <input type="number" min="0000" max="2099" name="year" value="<?php echo $result['year']; ?>"></br>
             <label>Catalogue Number:</label>
             <input type="text" name="catno" value="<?php echo $result['catno']; ?>" style="width:250px"></br>
             <label>Record Label:</label>
@@ -50,8 +51,7 @@ foreach ($data['results'] as $result) { ?>
             <input type="text" name="catno" value="<?php echo str_replace('api.discogs.com/releases','www.discogs.com/release', $result['resource_url']); ?>" style="width:250px"></br>
             <label>Barcode:</label>
             <input type="text" name="catno" value="<?php echo $barcode; ?>" style="width:250px"></br>
-                        
-            <?php $image = $result['cover_image'];?></h2>
+            <br><?php $image = $result['cover_image'];?></h2>
             <img src=<?php echo $image ?> style="height:500px"><br>
         <?php } 
     ?>
