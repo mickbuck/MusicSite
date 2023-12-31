@@ -16,7 +16,7 @@ include("../include/config.php"); {
 
 
 <?php
-Echo $barcode
+Echo $barcode;
 
 $connect_api_url = "https://api.discogs.com/database/search?barcode=$barcode&per_page=1&type=release&$discogs";
 $connect_api_key = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
