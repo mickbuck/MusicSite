@@ -72,6 +72,11 @@
                                             <b>Format:</b> DVD
                                                 <?php
                                         }
+                                        if  ($formats == '4')
+                                        {?>
+                                            <b>Format:</b> USB
+                                                <?php
+                                        }
                                         ?>
                                     <?php $lab = "SELECT * FROM record_label WHERE id='$lart'"; 
                                         $label=mysqli_query($sql,$lab); 
