@@ -29,6 +29,8 @@
                                 <?php $t = "SELECT * from album WHERE artist_id=$qid AND (wanted IS NULL OR wanted != '1') And album.format > '0'";
                                 $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1'";
                                 $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2'";
+                                $dvd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '3'";
+                                $usb = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '4'";
                                 $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1'";
                                 ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?></h5>
@@ -43,12 +45,24 @@
                              } ?>  Vinyl: <?php if ($result = mysqli_query($sql, $vinyl)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 printf("  %d\n", $rowcount);
+                             } ?> 
+                              <?php if ($result = mysqli_query($sql, $dvd)) {
+                                $rowcount = mysqli_num_rows( $result );
+                                If ($rowcount > '0') { ?>
+                                DVD: <?php printf("  %d\n", $rowcount);
+                                } 
+                             } ?>  
+                                <?php if ($result = mysqli_query($sql, $usb)) {
+                                $rowcount = mysqli_num_rows( $result );
+                                If ($rowcount > '0') { ?>
+                                USB: <?php printf("  %d\n", $rowcount);
+                                }
                              } ?>  
                              <?php if ($result = mysqli_query($sql, $order)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 
                              
-                             If ($rowcount > '0') { ?>
+                                If ($rowcount > '0') { ?>
                              On Order: <?php printf("  %d\n", $rowcount);
                              } 
                             }
