@@ -111,8 +111,6 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
 
             </div>
         </div>
-        <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
-
         <h2><?php $site = $artname['officalsite'];
             $other = $artname['site'];
             if ($site > '0') {
@@ -152,7 +150,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
     $json = curl_exec($curl);
     $data = json_decode($json, true);
     $data = $data['release-groups'];
-    echo "<table border='1' align='center' color='white' style='color:#F5F5F5'>";
+    echo "<table border='1' align='center' style='color:#F5F5F5'>";
     foreach ($data as $stand) if ($stand['primary-type'] == 'Album' && empty($stand['secondary-types'])) {
         $title = $stand['title'];
         $type = $stand['primary-type'];
@@ -160,13 +158,14 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
         // Output a row
         echo "<tr>";
         echo "<td>$title  </td>";
-        echo "<td>Format:  $type  </td>";
+        echo "<td>Format:  $type   </td>";
         echo "<td>Release Date:  $date  </td>"; ?>
     <?php
         echo "</tr>";
     }
     echo "</table>"; ?>
     <br>
+    <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
     </body>
 
 </html>
