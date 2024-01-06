@@ -80,7 +80,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
 
                                     <?php $onorder = $qq['onorder'];
                                     if ($onorder > '0') {
-                                    ?><b>On Order: </b>Yes <br>mickbuck2015@gmail.com_create_guidp2(W;7[z])
+                                    ?><b>On Order: </b>Yes <br>
                                         <b>Date Ordered: </b><?php echo $qq['dateordered']; ?>
                                     <?php
                                     }
