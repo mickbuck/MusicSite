@@ -133,6 +133,26 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/instagram.png" style="height:100px;"></a>
             <?php
             }
+            if (str_contains($other, 'spotify')) {
+                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/spotify.png" style="height:100px;"></a>
+            <?php
+            }
+            if (str_contains($other, 'dark-divas')) {
+                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/dark-divas.png" style="height:100px;"></a>
+            <?php
+            }
+            if (str_contains($other, 'wikipedia')) {
+                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/wikipedia.png" style="height:100px;"></a>
+            <?php
+            }
+            if (str_contains($other, 'linktr')) {
+                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/linktr.png" style="height:100px;"></a>
+            <?php
+            }
+            if (str_contains($other, 'metal-archives')) {
+                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/metal-archives.png" style="height:100px;"></a>
+            <?php
+            }
             $mb = $artname['MusicBrainz'];
             ?>
             <br>
