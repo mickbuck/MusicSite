@@ -153,6 +153,10 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/metal-archives.png" style="height:100px;"></a>
             <?php
             }
+            if (str_contains($other, 'bandcamp.com')) {
+                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/bandcamp.png" style="height:100px;"></a>
+            <?php
+            }
             $mb = $artname['MusicBrainz'];
             ?>
             <br>
