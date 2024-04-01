@@ -25,7 +25,7 @@ if (isset($_POST['artist'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Add To Database</title>
+	<title>Add New Artist To Database</title>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
