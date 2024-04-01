@@ -137,7 +137,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/spotify.png" style="height:100px;"></a>
             <?php
             }
-            if (str_contains($other, 'dark-divas')) {
+            if (str_contains($other, 'divas')) {
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/dark-divas.png" style="height:100px;"></a>
             <?php
             }
@@ -149,11 +149,11 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/linktr.png" style="height:100px;"></a>
             <?php
             }
-            if (str_contains($other, 'metal-archives')) {
+            if (str_contains($other, 'archives')) {
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/metal-archives.png" style="height:100px;"></a>
             <?php
             }
-            if (str_contains($other, 'bandcamp.com')) {
+            if (str_contains($other, 'bandcamp')) {
                 ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/bandcamp.png" style="height:100px;"></a>
             <?php
             }

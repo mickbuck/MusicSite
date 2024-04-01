@@ -7,3 +7,5 @@ test*.*
 *variables.*
 *Thumbs.db
 .vscode/settings.json
+.vscode/extensions.json
+Testing/*
