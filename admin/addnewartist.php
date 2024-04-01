@@ -3,7 +3,7 @@
 include("../include/config.php"); {
 	$id = ($_GET["id"]); ?>
 <?php
-	$q = "SELECT * from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+	# $q = "SELECT * from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
 }
 if (isset($_POST['artist'])) {
 	$artist = mysqli_real_escape_string($sql, $_POST['Art']);
@@ -17,9 +17,17 @@ if (isset($_POST['artist'])) {
 		$listenorder = '0';
 	}
 	$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,listenorder,site) VALUES ('$artist','$tolisten','$listenorder','$site')";
-	if (mysqli_query($sql, $sql_insert)) {
-		echo '<script>alert("Artist added successfully")</script>';
-	}
+	#if (
+        mysqli_query($sql, $sql_insert);#) {
+        $sql_get = "Select id from artist where name like '$artist'";
+        $artistid = mysqli_query($sql, $sql_get);
+        $qq = mysqli_fetch_array($artistid);
+        $newid = $qq['id'];
+    #}
+    $url='editartist.php?id=';
+
+    echo '<script>window.location = "'.$url.$newid.'";</script>';
+	#}
 }
 ?>
 <!DOCTYPE html>
