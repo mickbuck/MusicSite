@@ -31,7 +31,7 @@
                                 $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2' AND (sold IS NULL OR sold != '1' )";
                                 $dvd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '3' AND (sold IS NULL OR sold != '1' )";
                                 $usb = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '4' AND (sold IS NULL OR sold != '1' )";
-                                $trademe = "SELECT * from album WHERE artist_id=$qid AND (ontrademe IS NULL OR onorder = '1') AND (sold IS NULL OR sold != '1' )";
+                                $trademe = "SELECT * from album WHERE artist_id=$qid AND (ontrademe = '1') AND (sold IS NULL OR sold != '1' )";
                                 $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1' AND (sold IS NULL OR sold != '1' )";
                                 ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?></h5>
