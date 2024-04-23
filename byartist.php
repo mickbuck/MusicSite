@@ -46,6 +46,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                 $qart = $qq['artist_id'];
                                 $lart = $qq['record_label_id'];
                                 $wart = $qq['officesite'];
+                                $trademe = $$qq['ontrademe']
                                 ?>
                                 <?php $art = "SELECT * FROM artist WHERE id='$qart'";
                                 $artist = mysqli_query($sql, $art); ?>
@@ -92,6 +93,14 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                     }
                                     ?>
                                     <b>Record Label: <br></b><?php echo $labs['name']; ?></h6> <br>
+                                    <b>
+                                    <?php $trademe = $qq['trademe'];
+                                    if ($discogs > '0') {
+                                    ?><br><a href="<?php echo $qq['trademe']; ?>" target="_blank"><img src="images/trademe.png" style="height:50px;"></a><br>
+                                    <?php
+                                    }
+                                    ?>
+                                    </b>
                                     <?php $discogs = $qq['discogs'];
                                     if ($discogs > '0') {
                                     ?><br><a href="<?php echo $qq['discogs']; ?>" target="_blank"><img src="images/discogs.png" style="height:50px;"></a><br>
