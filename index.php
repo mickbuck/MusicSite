@@ -62,7 +62,7 @@
                                 <?php if ($result = mysqli_query($sql, $trademe)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 If ($rowcount > '0') { ?>
-                                On TradeMe: <?php printf("  %d\n", $rowcount);
+                                <br>On TradeMe: <?php printf("  %d\n", $rowcount);
                                 }
                              } ?> 
                              <?php if ($result = mysqli_query($sql, $order)) {
