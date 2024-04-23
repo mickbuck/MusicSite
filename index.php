@@ -26,12 +26,13 @@
                     <div class="card">
                         <div class="card-body1">
                              <?php $qid = $qq['id'] ?>
-                                <?php $t = "SELECT * from album WHERE artist_id=$qid AND (wanted IS NULL OR wanted != '1') And album.format > '0'";
-                                $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1'";
-                                $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2'";
-                                $dvd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '3'";
-                                $usb = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '4'";
-                                $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1'";
+                                <?php $t = "SELECT * from album WHERE artist_id=$qid AND (wanted IS NULL OR wanted != '1') AND (sold != '1' ) And album.format > '0'";
+                                $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1'AND (sold != '1' )";
+                                $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2'AND (sold != '1' )";
+                                $dvd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '3'AND (sold != '1' )";
+                                $usb = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '4'AND (sold != '1' )";
+                                $trademe = "SELECT * from album WHERE artist_id=$qid AND (ontrademe IS NULL OR onorder = '1') AND (sold != '1' )";
+                                $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1' AND (sold != '1' )";
                                 ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Total: 
@@ -58,6 +59,12 @@
                                 USB: <?php printf("  %d\n", $rowcount);
                                 }
                              } ?>  
+                                <?php if ($result = mysqli_query($sql, $trademe)) {
+                                $rowcount = mysqli_num_rows( $result );
+                                If ($rowcount > '0') { ?>
+                                On TradeMe: <?php printf("  %d\n", $rowcount);
+                                }
+                             } ?> 
                              <?php if ($result = mysqli_query($sql, $order)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 
