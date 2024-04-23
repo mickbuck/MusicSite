@@ -96,7 +96,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                     <b>
                                     <?php $trademe = $qq['ontrademe'];
                                     if ($trademe > '0') {
-                                    ?><br><a href="<?php echo $qq['ontrademe']; ?>" target="_blank"><img src="images/trademe.png" style="height:50px;"></a><br>
+                                    ?><br><img src="images/trademe.png" style="height:50px;"></a><br>
                                     <?php
                                     }
                                     ?>
