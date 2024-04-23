@@ -94,9 +94,9 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                     ?>
                                     <b>Record Label: <br></b><?php echo $labs['name']; ?></h6> <br>
                                     <b>
-                                    <?php $trademe = $qq['trademe'];
+                                    <?php $trademe = $qq['ontrademe'];
                                     if ($trademe > '0') {
-                                    ?><br><a href="<?php echo $qq['trademe']; ?>" target="_blank"><img src="images/trademe.png" style="height:50px;"></a><br>
+                                    ?><br><a href="<?php echo $qq['ontrademe']; ?>" target="_blank"><img src="images/trademe.png" style="height:50px;"></a><br>
                                     <?php
                                     }
                                     ?>
