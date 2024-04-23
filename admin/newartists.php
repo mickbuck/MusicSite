@@ -10,13 +10,13 @@ include("../include/config.php"); {
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>My Music by Artists</title>
+    <title>Artists That Only Have a Small Number of Tracks</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
     <br>
-    <h1>My Music by Artists</h1>
+    <h1>Artists That Only Have a Small Number of Tracks</h1>
     <div class="container mt-5">
         <div class="row mt-4">
 
