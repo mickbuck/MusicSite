@@ -53,11 +53,11 @@ if (isset($_POST['update'])) {
             <input type="text" name="website" value="<?php echo $qq['officalsite']; ?>" style="width:500px">
         </h2>
         <h2 class="white"><label>To Listen To:</label>
-            <input type="text" name="tolistento" value="<?php echo $qq['tolistento']; ?>">
+            <input type="number" max="1" min="0" name="tolistento" value="<?php echo $qq['tolistento']; ?>">
             <label>Listening Order:</label>
-            <input type="text" name="listenorder" value="<?php echo $qq['listenorder']; ?>"><br>
+            <input type="number" max="1" min="0" name="listenorder" value="<?php echo $qq['listenorder']; ?>"><br>
             <label>Rating (0-5):</label>
-            <input type="text" name="rating" value="<?php echo $qq['rating']; ?>">
+            <input type="number" max="9" min="0" name="rating" value="<?php echo $qq['rating']; ?>">
             <h2 class="white"><label>Random Site:</label>
             <input type="text" name="site" value="<?php echo $qq['site']; ?>" style="width:500px">
         </h2>   
