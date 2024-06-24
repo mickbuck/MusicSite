@@ -40,13 +40,19 @@
                                 $rowcount = mysqli_num_rows( $result );
                                 printf("  %d\n", $rowcount);
                              } ?>
-                             <br>  CD: <?php if ($result = mysqli_query($sql, $cd)) {
+                             <br>
+                                <?php if ($result = mysqli_query($sql, $cd)) {
                                 $rowcount = mysqli_num_rows( $result );
-                                printf("  %d\n", $rowcount);
-                             } ?>  Vinyl: <?php if ($result = mysqli_query($sql, $vinyl)) {
+                                If ($rowcount > '0') { ?>
+                                CD: <?php printf("  %d\n", $rowcount);
+                                } 
+                             } ?>
+                                <?php if ($result = mysqli_query($sql, $vinyl)) {
                                 $rowcount = mysqli_num_rows( $result );
-                                printf("  %d\n", $rowcount);
-                             } ?> 
+                                If ($rowcount > '0') { ?>
+                                Vinyl: <?php printf("  %d\n", $rowcount);
+                                } 
+                             } ?>
                               <?php if ($result = mysqli_query($sql, $dvd)) {
                                 $rowcount = mysqli_num_rows( $result );
                                 If ($rowcount > '0') { ?>
