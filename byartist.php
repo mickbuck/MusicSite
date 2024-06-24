@@ -87,7 +87,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                     }
                                     ?>
                                     <?php $cost = $qq['cost'];
-                                    if ($cost > '0') {
+                                    if ($cost != '0' ) {
                                     ?><b>Cost: </b>$<?php echo $qq['cost']; ?><br>
                                     <?php
                                     }
