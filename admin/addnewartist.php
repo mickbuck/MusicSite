@@ -16,7 +16,7 @@ if (isset($_POST['artist'])) {
 	if ($listenorder != '1') {
 		$listenorder = '0';
 	}
-	$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,listenorder,site) VALUES ('$artist','$tolisten','$listenorder','$site')";
+	$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,listenorder,site) VALUES ('$artist','$tolisten','$site')";
 	#if (
         mysqli_query($sql, $sql_insert);#) {
         $sql_get = "Select id from artist where name like '$artist'";
@@ -44,8 +44,6 @@ if (isset($_POST['artist'])) {
 		<input type="text" class="form-control" placeholder="Artist name" name="Art" /><br>
 		<label>To Listen To:</label> 
 		<input type="checkbox" name="tolisten" value="1"><br>
-		<label>Listen Order:</label>
-		<input type="checkbox" name="listenorder" value="1"></h2>
 		<h2 class="white"><label>Random Site:</label>
         <input type="text" class="form-control" placeholder="Random site" name="site" style="width:500px">
 		<div class="form-group">
