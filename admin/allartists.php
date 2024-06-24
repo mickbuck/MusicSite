@@ -26,7 +26,7 @@ include("../include/config.php"); {
                     <div class="card">
                         <div class="card-body1">
                             <?php $qid = $qq['id'] ?>
-                            <?php $t = "SELECT * from album WHERE artist_id=$qid";
+                            <?php $t = "SELECT * from album WHERE artist_id=$qid and (album.sold IS NULL OR album.sold != '1' ) and (album.format BETWEEN '1' AND '4' or album.wanted = '1')";
                             $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1' AND (sold IS NULL OR sold != '1' )";
                             $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2' AND (sold IS NULL OR sold != '1' )";
                             $dvd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '3' AND (sold IS NULL OR sold != '1' )";
