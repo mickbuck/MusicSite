@@ -2,7 +2,7 @@
 
 <?php
 include("../include/config.php"); {
-    $q = "SELECT * from artist WHERE tolistento = '1' AND (rating is NULL OR rating = '' OR rating = '0') order by listenorder desc, UPPER(LTRIM(Replace(name, 'The ', '')));";
+    $q = "SELECT * from artist WHERE tolistento = '1' AND (rating is NULL OR rating = '' OR rating = '0') order by UPPER(LTRIM(Replace(name, 'The ', '')));";
     $query = mysqli_query($sql, $q);
 }
 ?>
