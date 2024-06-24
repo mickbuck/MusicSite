@@ -29,6 +29,8 @@ include("../include/config.php"); {
                             <?php $t = "SELECT * from album WHERE artist_id=$qid";
                             $cd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '1'";
                             $vinyl = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '2'";
+                            $dvd = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '3' AND (sold IS NULL OR sold != '1' )";
+                            $usb = "SELECT * from album WHERE artist_id=$qid AND (onorder IS NULL OR onorder != '1')  AND (wanted IS NULL OR wanted != '1') AND FORMAT = '4' AND (sold IS NULL OR sold != '1' )";
                             $order = "SELECT * from album WHERE artist_id=$qid AND onorder = '1'";
                             $wanted = "SELECT * from album WHERE artist_id=$qid AND wanted = '1'";
                             ?>
@@ -38,13 +40,28 @@ include("../include/config.php"); {
                                     $rowcount = mysqli_num_rows($result);
                                     printf("  %d\n", $rowcount);
                                 } ?>
-                                <br> CD: <?php if ($result = mysqli_query($sql, $cd)) {
-                                                $rowcount = mysqli_num_rows($result);
-                                                printf("  %d\n", $rowcount);
-                                            } ?> Vinyl: <?php if ($result = mysqli_query($sql, $vinyl)) {
-                                                $rowcount = mysqli_num_rows($result);
-                                                printf("  %d\n", $rowcount);
-                                            } ?>
+                                <br> 
+                                    CD: <?php if ($result = mysqli_query($sql, $cd)) {
+                                            $rowcount = mysqli_num_rows($result);
+                                            printf("  %d\n", $rowcount);
+                                        } ?>    
+                                    Vinyl: <?php if ($result = mysqli_query($sql, $vinyl)) {
+                                        $rowcount = mysqli_num_rows($result);
+                                        printf("  %d\n", $rowcount);
+                                    } ?>
+                                    <?php if ($result = mysqli_query($sql, $dvd)) {
+                                    $rowcount = mysqli_num_rows( $result );
+                                    If ($rowcount > '0') { ?>
+                                    DVD: <?php printf("  %d\n", $rowcount);
+                                    } 
+                                    } ?>
+                                    
+                                    <?php if ($result = mysqli_query($sql, $usb)) {
+                                    $rowcount = mysqli_num_rows( $result );
+                                    If ($rowcount > '0') { ?>
+                                    USB: <?php printf("  %d\n", $rowcount);
+                                    } 
+                                    } ?>
                                 <?php if ($result = mysqli_query($sql, $order)) {
                                     $rowcount = mysqli_num_rows($result);
                                     if ($rowcount > '0') { ?>
