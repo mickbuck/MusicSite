@@ -15,10 +15,9 @@ if (isset($_POST['update'])) {
     $banner = mysqli_real_escape_string($sql, $_POST['banner']);
     $clear = mysqli_real_escape_string($sql, $_POST['clear']);
     $tolistento = mysqli_real_escape_string($sql, $_POST['tolistento']);
-    $listenorder = mysqli_real_escape_string($sql, $_POST['listenorder']);
     $rating = mysqli_real_escape_string($sql, $_POST['rating']);
     $site = mysqli_real_escape_string($sql, $_POST['site']);
-    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', listenorder = '$listenorder', rating = '$rating', site = '$site' where id = '$id'";
+    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', rating = '$rating', site = '$site' where id = '$id'";
 
     if (mysqli_query($sql, $sql_insert)) {
         echo '<script>alert("Artist updated successfully")</script>';
@@ -54,8 +53,6 @@ if (isset($_POST['update'])) {
         </h2>
         <h2 class="white"><label>To Listen To:</label>
             <input type="number" max="1" min="0" name="tolistento" value="<?php echo $qq['tolistento']; ?>">
-            <label>Listening Order:</label>
-            <input type="number" max="1" min="0" name="listenorder" value="<?php echo $qq['listenorder']; ?>"><br>
             <label>Rating (0-5):</label>
             <input type="number" max="9" min="0" name="rating" value="<?php echo $qq['rating']; ?>">
             <h2 class="white"><label>Random Site:</label>
