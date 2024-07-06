@@ -54,7 +54,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                 while ($arts = mysqli_fetch_array($artist)) {
                                 ?>
                                     <h5 class="card-title"><?php echo $qq['name']; ?></h5>
-                                    <img src="<?php echo $qq['image']; ?>" alt="<?php echo $qq['id']; ?>" style="width:200px;height:200px;"></h6>
+                                    <img src="<?php echo $qq['image']; ?>" alt="<?php echo $qq['id']; ?>" style="width:98%;"></h6>
                                     <b>Catalogue Number: <br></b><?php echo $qq['cat_number']; ?><br>
                                     <?php
                                     $formats = $qq['format'];

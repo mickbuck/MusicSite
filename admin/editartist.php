@@ -71,20 +71,20 @@ if (isset($_POST['update'])) {
                 </th>
             </tr>
             <tr>
-                <td><input type="text" name="image" value="<?php echo $qq['Image']; ?>" style="width:350px"></td>
-                <td><input type="text" name="banner" value="<?php echo $qq['banner']; ?>" style="width:350px"></td>
-                <td><input type="text" name="clear" value="<?php echo $qq['clear']; ?>" style="width:350px"></td>
+                <td><input type="text" name="image" value="<?php echo $qq['Image']; ?>" style="width:98%;"></td>
+                <td><input type="text" name="banner" value="<?php echo $qq['banner']; ?>" style="width:98%;"></td>
+                <td><input type="text" name="clear" value="<?php echo $qq['clear']; ?>" style="width:98%;"></td>
             </tr>
             <tr>
             </form>
-                <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:300px">
+                <td><img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:98%;">
                     <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
                     <h4 class="white">Select image to upload:<br>
                     <input type="file" name="bandupload" id="bandupload"><br>
                     <input type="submit" value="Upload Image" name="band"></h4>
                     </form>
                 </td>
-                <td><img src="<?php echo $qq['banner']; ?>" style="width:300px">
+                <td><img src="<?php echo $qq['banner']; ?>" style="width:98%;">
                     </form>
                         <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
                         <h4 class="white">Select image to upload:<br>
@@ -93,7 +93,7 @@ if (isset($_POST['update'])) {
                     </form>
                 </td>
                 
-                <td><img src="<?php echo $qq['clear']; ?>" style="width:300px">
+                <td><img src="<?php echo $qq['clear']; ?>" style="width:98%;">
                     </form>
                         <form action="upload.php?id=<?php echo $qq['id']; ?>" method="post" enctype="multipart/form-data">
                         <h4 class="white">Select image to upload:<br>

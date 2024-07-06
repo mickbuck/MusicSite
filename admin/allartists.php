@@ -81,7 +81,7 @@ include("../include/config.php"); {
                                                 ?>
                             </h6>
                             <h5 class="card-title">
-                                <a href="../byartist.php?id=<?php echo $qq['id']; ?>"> <img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:200px;height:200px;"></a>
+                                <a href="../byartist.php?id=<?php echo $qq['id']; ?>"> <img src="<?php echo $qq['Image']; ?>" alt="<?php echo $qq['name']; ?>" style="width:98%;"></a>
                             </h5>
                         </div>
                     </div><br>
