@@ -137,6 +137,15 @@ h6 {
     margin-right: auto;
   }
 
+  .col-lg-2 {
+    -ms-flex: 0 0 33%;
+    flex: 0 0 33%;
+    max-width: 33%;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px
+}
+
 .col-lg-3 {
        -ms-flex: 0 0 25%;
        flex: 0 0 25%;

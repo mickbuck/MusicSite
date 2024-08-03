@@ -26,9 +26,9 @@ include("../include/config.php"); {
             <?php $lidarr = $qq['onladarr'] ?>
             <?php $officalsite = $qq['officalsite'] ?>
             <?php $other = $qq['site'] ?>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="card">
-                        <div class="card-body1">
+                        <div class="card-body2">
                             <?php $qid = $qq['id'] ?>
                             <h5 class="card-title"><?php echo $qq['name']; ?>
                                 <a href="../byartist.php?id=<?php echo $qq['id']; ?>">
@@ -84,7 +84,7 @@ include("../include/config.php"); {
                                 <?php
                                 }
                                 ?>
-                                <br><input type="button" onclick="window.location='editartist.php?id=<?php echo $qq['id']; ?>'" class="Redirect" value="Click Here To Edit" />
+                                <br><input type="button" onclick="window.location='editartist.php?id=<?php echo $qq['id']; ?>'" class="Redirect" value="Click Here To Edit"  />
                             </h5>
                         </div>
                     </div><br>
