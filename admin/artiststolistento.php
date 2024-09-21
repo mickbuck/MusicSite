@@ -1,7 +1,7 @@
 <?php
 include("../include/config.php"); {
     $r = "SELECT  DISTINCT (artist.name), artist.id, artist.Image from album, artist where album.artist_id = artist.id and (album.sold IS NULL OR album.sold != '1' ) and (album.format BETWEEN '1' AND '4' or album.wanted = '1') order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
-    $q = "SELECT (artist.name), artist.id, artist.Image FROM artist LEFT JOIN album ON album.artist_id = artist.id WHERE album.artist_id IS NULL order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+    $q = "SELECT (artist.name), artist.id, artist.Image FROM artist LEFT JOIN album ON album.artist_id = artist.id WHERE album.artist_id IS NULL and artist.name NOT LIKE '' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
     $query = mysqli_query($sql, $q);
 }
 ?>
