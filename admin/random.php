@@ -14,7 +14,7 @@ include("../include/config.php"); {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="center">
     <br>
     <h1>My Music by Artists</h1>
     <div class="container mt-5">
@@ -26,7 +26,8 @@ include("../include/config.php"); {
             <?php $lidarr = $qq['onladarr'] ?>
             <?php $officalsite = $qq['officalsite'] ?>
             <?php $other = $qq['site'] ?>
-                <div class="col-lg-2">
+                <div class="col-md-1 offset-md-1
+                        text-center bg-success">
                     <div class="card">
                         <div class="card-body2">
                             <?php $qid = $qq['id'] ?>

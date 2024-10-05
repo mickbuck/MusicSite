@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="center">
 
     <?php $qq = mysqli_fetch_array($artistname) ?>
     <form method="POST">

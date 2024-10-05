@@ -14,7 +14,7 @@ include("../include/config.php"); {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="center">
     <br>
     <h1>My Music by Artists</h1>
     <div class="container mt-5">

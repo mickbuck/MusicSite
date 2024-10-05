@@ -19,7 +19,7 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
         <link rel="stylesheet" href="css/style.css">
     </head>
 
-    <body>
+    <body class="center">
         <style>
             body {
                 background-image: url('<?php echo $artname['clear']; ?>');

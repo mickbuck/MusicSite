@@ -10,7 +10,7 @@ include("../include/config.php"); {
 	<title>Add To Database</title>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="center">
 	<!-- Adding Wanted Album to DB -->
 	<form method="POST">
 		<h1 class="white">Add New Album</h1>

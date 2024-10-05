@@ -14,7 +14,7 @@ include("../include/config.php"); {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="center">
     <br>
     <h1>Wanted Media</h1>
     <div class="container mt-5">

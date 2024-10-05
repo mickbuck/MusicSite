@@ -8,6 +8,7 @@ include("../include/config.php"); {
     <title><?php echo $artname['name']; ?></title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+<body class="center">
 <?php
 
 $target_dir = "../images/" . "$id" . "/";
@@ -154,3 +155,4 @@ if ($banner == '1'){
    }
 ?>
 <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
+  </body>

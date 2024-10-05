@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
     <title><?php echo $artname['name']; ?></title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="center">
     <div class="container mt-5">
         <div class="row mt-4">
             <?php $qq = mysqli_fetch_array($albumname) ?>

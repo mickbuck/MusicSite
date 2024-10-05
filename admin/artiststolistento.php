@@ -10,10 +10,10 @@ include("../include/config.php"); {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>My Music by Artists</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylenew.css">
 </head>
 
-<body>
+<body class="center">
     <br>
     <h1>My Music by Artists</h1>
 
@@ -26,7 +26,7 @@ include("../include/config.php"); {
                     <div class="card">
                         <div class="card-body1">
                             <?php $qid = $qq['id'] ?>
-                            <h5 class="card-title"><?php echo $qq['name']; ?></h5>
+                            <h5><?php echo $qq['name']; ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Rating:
                             <?php echo $qq['rating']; ?>
                             </h6>
@@ -55,7 +55,7 @@ include("../include/config.php"); {
                                     }
                                 }
                                 if (str_contains($other, 'facebook')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/facebook.png" style="height:100px;"></a>
+                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/facebook.png" style="height:25%;"></a>
                                 <?php
                                 }
                                 if (str_contains($other, 'instagram')) {

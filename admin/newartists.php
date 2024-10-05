@@ -14,7 +14,7 @@ include("../include/config.php"); {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="center">
     <br>
     <h1>Artists That Only Have a Small Number of Tracks</h1>
     <div class="container mt-5">

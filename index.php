@@ -12,7 +12,7 @@
         <title>My Music by Artists</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
+    <body class="center">
         <br>
         <h1>My Music by Artists</h1>
         
