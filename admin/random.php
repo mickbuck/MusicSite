@@ -2,7 +2,7 @@
 
 <?php
 include("../include/config.php"); {
-    $q = "SELECT * from artist WHERE tolistento = '1' AND (rating is NULL OR rating = '' OR rating = '0') ORDER BY RAND(), UPPER(LTRIM(Replace(name, 'The ', ''))) LIMIT 1;";
+    $q = "SELECT * from artist WHERE tolistento = '1' AND (rating is NULL OR rating = '' OR rating = '0') AND id > 1919 ORDER BY RAND(), UPPER(LTRIM(Replace(name, 'The ', ''))) LIMIT 1;";
     $query = mysqli_query($sql, $q);
 }
 ?>
