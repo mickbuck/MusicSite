@@ -1,6 +1,6 @@
 <?php
 include("../include/config.php"); {
-    $q = "SELECT (artist.name), artist.id, artist.Image, artist.rating, artist.site, artist.onlardarr, artist.officalsite FROM artist LEFT JOIN album ON album.artist_id = artist.id WHERE album.artist_id IS NULL and artist.name NOT LIKE '' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+    $q = "SELECT (artist.name), artist.id, artist.Image, artist.rating, artist.site, artist.onlardarr, artist.officalsite, artist.youtube, artist.facebook, artist.instagram, artist.spotify, artist.divas, artist.wikipedia, artist.linktr, artist.musicarc, artist.bandcamp FROM artist LEFT JOIN album ON album.artist_id = artist.id WHERE album.artist_id IS NULL and artist.name NOT LIKE '' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
     $query = mysqli_query($sql, $q);
 }
 ?>
@@ -44,13 +44,62 @@ include("../include/config.php"); {
                                 <h6 class="card-title"><b>On Lidarr: </b>
                                     <?php echo $tracking; ?><img src="emojis/cross.png" style="height:25px;"><br>
                                 <?php } ?>
-                                <?php if ($officalsite > '0') {
-                                ?><a href="<?php echo $qq['officalsite']; ?>" target="_blank"><img src="../images/site.png" style="height:100px;"></a>
-                                <?php
-                                } ?>
+                                <?php 
+                                    if ($officalsite > '0') {
+                                        ?><a href="<?php echo $qq['officalsite']; ?>" target="_blank"><img src="../images/site.png" style="height:100px;"></a>
+                                        <?php
+                                    }
+                                    if (str_contains($qq['youtube'], 'youtube')) {
+                                        ?><a href="<?php echo $qq['youtube']; ?>" target="_blank"><img src="../images/youtube.png" style="height:75px;"></a>
+                                        <?php
+                                    }
+                                    if (str_contains($qq['facebook'], 'facebook')) {
+                                        ?><a href="<?php echo $qq['facebook']; ?>" target="_blank"><img src="../images/facebook.png" style="height:75px;"></a>
+                                        <?php
+                                    }
+                                    if (str_contains($qq['instagram'], 'instagram')) {
+                                        ?><a href="<?php echo $qq['instagram']; ?>" target="_blank"><img src="../images/instagram.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['spotify'], 'spotify')) {
+                                        ?><a href="<?php echo $qq ['spotify']; ?>" target="_blank"><img src="../images/spotify.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['divas'], 'divas')) {
+                                        ?><a href="<?php echo $qq ['divas']; ?>" target="_blank"><img src="../images/dark-divas.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['wikipedia'], 'wikipedia')) {
+                                        ?><a href="<?php echo $qq ['wikipedia']; ?>" target="_blank"><img src="../images/wikipedia.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['linktr'], 'linktr')) {
+                                        ?><a href="<?php echo $qq ['linktr']; ?>" target="_blank"><img src="../images/linktr.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['musicarc'], 'metal-archives')) {
+                                        ?><a href="<?php echo $qq ['musicarc']; ?>" target="_blank"><img src="../images/metal-archives.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['bandcamp'], 'bandcamp')) {
+                                        ?><a href="<?php echo $qq ['bandcamp']; ?>" target="_blank"><img src="../images/bandcamp.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+
+                                    ?>
+
+
+
+
+
+
+
+
+
+                                
                                 <?php if ($other > '0') {
-                                    if (str_contains($other, 'youtube')) {
-                                ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/youtube.png" style="height:100px;"></a>
+                                    if (str_contains($qq['youtube'], 'youtube')) {
+                                ?><a href="<?php echo $qq['youtube']; ?>" target="_blank"><img src="../images/youtube.png" style="height:100px;"></a>
                                     <?php
                                     }
                                 }
