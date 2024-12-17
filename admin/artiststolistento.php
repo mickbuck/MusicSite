@@ -77,7 +77,7 @@ include("../include/config.php"); {
                                         ?><a href="<?php echo $qq ['linktr']; ?>" target="_blank"><img src="../images/linktr.png" style="height:75px;"></a>
                                     <?php
                                     }
-                                    if (str_contains($qq ['twitter'], 'twiiter')) {
+                                    if (str_contains($qq ['twitter'], 'twitter')) {
                                         ?><a href="<?php echo $qq ['twiiter']; ?>" target="_blank"><img src="../images/twitter.png" style="height:75px;"></a>
                                     <?php
                                     }
