@@ -18,7 +18,37 @@ if (isset($_POST['artist'])) {
 	}
 	if (str_contains($site, 'facebook')) {
 		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,facebook) VALUES ('$artist','$tolisten','$site')";
-	} Else {$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,site) VALUES ('$artist','$tolisten','$site')"; }
+	} 
+	elseif
+		(str_contains($site, 'instagram')) {
+			$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,instagram) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'youtube')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,youtube) VALUES ('$artist','$tolisten','$site')";
+	}
+	
+	elseif (str_contains($site, 'instagram')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,instagram) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'spotify')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,spotify) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'divas')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,divas) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'wikipedia')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,wikipedia) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'linktr')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,linktr) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'metal-archives')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,musicarc) VALUES ('$artist','$tolisten','$site')";
+	}
+	elseif (str_contains($site, 'bandcamp')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,bandcamp) VALUES ('$artist','$tolisten','$site')";
+	}
+	else {$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,site) VALUES ('$artist','$tolisten','$site')"; }
 	#if (
         mysqli_query($sql, $sql_insert);#) {
         $sql_get = "Select id from artist where name like '$artist'";
