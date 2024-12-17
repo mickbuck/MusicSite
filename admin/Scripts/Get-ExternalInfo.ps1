@@ -19,7 +19,7 @@ $Connection.Open()
 
 #Finding External Links
 
-$Query = "SELECT * FROM artist WHERE (youtube IS NULL OR instagram IS NULL OR facebook IS NULL) AND (MusicBrainz NOT LIKE 'https://musicbrainz.org/artist/') AND (MusicBrainz NOT LIKE 'https://musicbrainz.org/')"
+$Query = "SELECT * FROM artist WHERE (youtube IS NULL OR instagram IS NULL OR facebook IS NULL) AND (MusicBrainz NOT LIKE 'https://musicbrainz.org/artist/') AND (MusicBrainz NOT LIKE 'https://musicbrainz.org/') ORDER BY rand() LIMIT 500"
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
 $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
 $DataSet = New-Object System.Data.DataSet
