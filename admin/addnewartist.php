@@ -16,7 +16,9 @@ if (isset($_POST['artist'])) {
 	if ($listenorder != '1') {
 		$listenorder = '0';
 	}
-	$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,site) VALUES ('$artist','$tolisten','$site')";
+	if (str_contains($site, 'facebook')) {
+		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,facebook) VALUES ('$artist','$tolisten','$site')";
+	} Else {$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,site) VALUES ('$artist','$tolisten','$site')"; }
 	#if (
         mysqli_query($sql, $sql_insert);#) {
         $sql_get = "Select id from artist where name like '$artist'";

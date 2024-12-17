@@ -17,7 +17,8 @@ if (isset($_POST['update'])) {
     $tolistento = mysqli_real_escape_string($sql, $_POST['tolistento']);
     $rating = mysqli_real_escape_string($sql, $_POST['rating']);
     $site = mysqli_real_escape_string($sql, $_POST['site']);
-    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', rating = '$rating', site = '$site' where id = '$id'";
+    $facebook = mysqli_real_escape_string($sql, $_POST['facebook']);
+    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', rating = '$rating', site = '$site', facebook = '$facebook' where id = '$id'";
 
     if (mysqli_query($sql, $sql_insert)) {
         echo '<script>alert("Artist updated successfully")</script>';
@@ -57,6 +58,8 @@ if (isset($_POST['update'])) {
             <input type="number" max="9" min="0" name="rating" value="<?php echo $qq['rating']; ?>">
             <h2 class="white"><label>Random Site:</label>
             <input type="text" name="site" value="<?php echo $qq['site']; ?>" style="width:500px">
+            <h2 class="white"><label>Facebook:</label>
+            <input type="text" name="facebook" value="<?php echo $qq['facebook']; ?>" style="width:500px">
         </h2>   
         <table class="center">
             <tr>

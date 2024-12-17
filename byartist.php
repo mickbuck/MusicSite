@@ -134,8 +134,8 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                 <?php
                 }
             }
-            if (str_contains($other, 'facebook')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/facebook.png" style="height:100px;"></a>
+            if (str_contains($artname['facebook'], 'facebook')) {
+                ?><a href="<?php echo $artname['facebook']; ?>" target="_blank"><img src="images/facebook.png" style="height:100px;"></a>
             <?php
             }
             if (str_contains($other, 'instagram')) {
