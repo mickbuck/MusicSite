@@ -19,7 +19,7 @@ $Connection.Open()
 
 #Finding External Links
 
-$Query = 'SELECT * From artist ORDER BY rand() LIMIT 500'
+$Query = 'SELECT * FROM artist WHERE youtube IS NULL OR instagram IS NULL OR facebook IS NULL ORDER BY rand() LIMIT 500'
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
 $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
 $DataSet = New-Object System.Data.DataSet
@@ -60,7 +60,7 @@ $out = $out| Select-Object -expand relations
                 }
             }
         }
-     If ([string]::IsNullOrEmpty($artist.wikipedia)) {
+     If ([string]::IsNullOrEmpty($artist.facebook)) {
             
             ForEach ($fb in $out){
                 If ($fb.url -like "*facebook*" )  {
