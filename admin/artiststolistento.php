@@ -1,6 +1,6 @@
 <?php
 include("../include/config.php"); {
-    $q = "SELECT (artist.name), artist.id, artist.Image, artist.rating, artist.site, artist.onlardarr, artist.officalsite, artist.youtube, artist.facebook, artist.instagram, artist.spotify, artist.divas, artist.wikipedia, artist.linktr, artist.musicarc, artist.bandcamp FROM artist LEFT JOIN album ON album.artist_id = artist.id WHERE album.artist_id IS NULL and artist.name NOT LIKE '' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+    $q = "SELECT (artist.name), artist.id, artist.Image, artist.rating, artist.site, artist.onlardarr, artist.officalsite, artist.twitter, artist.youtube, artist.facebook, artist.instagram, artist.spotify, artist.divas, artist.wikipedia, artist.linktr, artist.musicarc, artist.bandcamp FROM artist LEFT JOIN album ON album.artist_id = artist.id WHERE album.artist_id IS NULL and artist.name NOT LIKE '' order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
     $query = mysqli_query($sql, $q);
 }
 ?>
@@ -71,6 +71,18 @@ include("../include/config.php"); {
                                     }
                                     if (str_contains($qq ['wikipedia'], 'wikipedia')) {
                                         ?><a href="<?php echo $qq ['wikipedia']; ?>" target="_blank"><img src="../images/wikipedia.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['linktr'], 'linktr')) {
+                                        ?><a href="<?php echo $qq ['linktr']; ?>" target="_blank"><img src="../images/linktr.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['twiiter'], 'twiiter')) {
+                                        ?><a href="<?php echo $qq ['twiiter']; ?>" target="_blank"><img src="../images/twiiter.png" style="height:75px;"></a>
+                                    <?php
+                                    }
+                                    if (str_contains($qq ['twiiter'], 'x.com')) {
+                                        ?><a href="<?php echo $qq ['twiiter']; ?>" target="_blank"><img src="../images/twiiter.png" style="height:75px;"></a>
                                     <?php
                                     }
                                     if (str_contains($qq ['linktr'], 'linktr')) {
