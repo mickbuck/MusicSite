@@ -123,47 +123,46 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
         <h2><?php $site = $artname['officalsite'];
             $other = $artname['site'];
             if ($site > '0') {
-            ?><a href="<?php echo $artname['officalsite']; ?>" target="_blank"><img src="images/site.png" style="height:100px;"></a>
+            ?><a href="<?php echo $artname['officalsite']; ?>" target="_blank"><img src="images/site.png" style="height:75px;"></a>
             <?php
             } ?>
 
-            <a href="<?php echo $artname['MusicBrainz']; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:100px;"></a>
-            <?php if ($other > '0') {
-                if (str_contains($other, 'youtube')) {
-            ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/youtube.png" style="height:100px;"></a>
+            <a href="<?php echo $artname['MusicBrainz']; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:75px;"></a>
+            <?php 
+                if (str_contains($artname['youtube'], 'youtube')) {
+            ?><a href="<?php echo $artname['youtube']; ?>" target="_blank"><img src="images/youtube.png" style="height:75px;"></a>
                 <?php
-                }
             }
             if (str_contains($artname['facebook'], 'facebook')) {
-                ?><a href="<?php echo $artname['facebook']; ?>" target="_blank"><img src="images/facebook.png" style="height:100px;"></a>
+                ?><a href="<?php echo $artname['facebook']; ?>" target="_blank"><img src="images/facebook.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'instagram')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/instagram.png" style="height:100px;"></a>
+            if (str_contains($artname['instagram'], 'instagram')) {
+                ?><a href="<?php echo $artname['instagram']; ?>" target="_blank"><img src="images/instagram.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'spotify')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/spotify.png" style="height:100px;"></a>
+            if (str_contains($artname['spotify'], 'spotify')) {
+                ?><a href="<?php echo $artname['spotify']; ?>" target="_blank"><img src="images/spotify.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'divas')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/dark-divas.png" style="height:100px;"></a>
+            if (str_contains($artname['divas'], 'divas')) {
+                ?><a href="<?php echo $artname['divas']; ?>" target="_blank"><img src="images/dark-divas.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'wikipedia')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/wikipedia.png" style="height:100px;"></a>
+            if (str_contains($artname['wikipedia'], 'wikipedia')) {
+                ?><a href="<?php echo $artname['wikipedia']; ?>" target="_blank"><img src="images/wikipedia.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'linktr')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/linktr.png" style="height:100px;"></a>
+            if (str_contains($artname['linktr'], 'linktr')) {
+                ?><a href="<?php echo $artname['linktr']; ?>" target="_blank"><img src="images/linktr.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'archives')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/metal-archives.png" style="height:100px;"></a>
+            if (str_contains($artname['musicarc'], 'metal-archives')) {
+                ?><a href="<?php echo $artname['musicarc']; ?>" target="_blank"><img src="images/metal-archives.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($other, 'bandcamp')) {
-                ?><a href="<?php echo $artname['site']; ?>" target="_blank"><img src="images/bandcamp.png" style="height:100px;"></a>
+            if (str_contains($artname['bandcamp'], 'bandcamp')) {
+                ?><a href="<?php echo $artname['bandcamp']; ?>" target="_blank"><img src="images/bandcamp.png" style="height:75px;"></a>
             <?php
             }
             $mb = $artname['MusicBrainz'];
