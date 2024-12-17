@@ -74,7 +74,7 @@ $out = $out| Select-Object -expand relations
                 }
             }
         }
-    
+    Sleep 5
 }
 
 #Finding Album Image
