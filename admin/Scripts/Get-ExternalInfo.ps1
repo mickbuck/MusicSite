@@ -19,7 +19,7 @@ $Connection.Open()
 
 #Finding External Links
 
-$Query = 'SELECT * From artist Limit 3'
+$Query = 'SELECT * From artist'
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
 $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
 $DataSet = New-Object System.Data.DataSet
