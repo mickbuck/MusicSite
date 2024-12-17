@@ -18,7 +18,6 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
         <title><?php echo $artname['name']; ?></title>
         <link rel="stylesheet" href="css/style.css">
     </head>
-
     <body class="center">
         <style>
             body {
@@ -116,8 +115,6 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                 <?php
                 }
                 ?>
-
-
             </div>
         </div>
         <h2><?php $site = $artname['officalsite'];
@@ -129,8 +126,8 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
 
             <a href="<?php echo $artname['MusicBrainz']; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:75px;"></a>
             <?php 
-                if (str_contains($artname['youtube'], 'youtube')) {
-            ?><a href="<?php echo $artname['youtube']; ?>" target="_blank"><img src="images/youtube.png" style="height:75px;"></a>
+            if (str_contains($artname['youtube'], 'youtube')) {
+                ?><a href="<?php echo $artname['youtube']; ?>" target="_blank"><img src="images/youtube.png" style="height:75px;"></a>
                 <?php
             }
             if (str_contains($artname['facebook'], 'facebook')) {
@@ -203,5 +200,4 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
     <br>
     <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
     </body>
-
 </html>
