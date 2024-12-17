@@ -46,7 +46,7 @@ include("../include/config.php"); {
                                 <?php } ?>
                                 <?php 
                                     if ($officalsite > '0') {
-                                        ?><a href="<?php echo $qq['officalsite']; ?>" target="_blank"><img src="../images/site.png" style="height:100px;"></a>
+                                        ?><a href="<?php echo $qq['officalsite']; ?>" target="_blank"><img src="../images/site.png" style="height:75px;"></a>
                                         <?php
                                     }
                                     if (str_contains($qq['youtube'], 'youtube')) {
