@@ -77,16 +77,12 @@ include("../include/config.php"); {
                                         ?><a href="<?php echo $qq ['linktr']; ?>" target="_blank"><img src="../images/linktr.png" style="height:75px;"></a>
                                     <?php
                                     }
-                                    if (str_contains($qq ['twiiter'], 'twiiter')) {
-                                        ?><a href="<?php echo $qq ['twiiter']; ?>" target="_blank"><img src="../images/twiiter.png" style="height:75px;"></a>
+                                    if (str_contains($qq ['twitter'], 'twiiter')) {
+                                        ?><a href="<?php echo $qq ['twiiter']; ?>" target="_blank"><img src="../images/twitter.png" style="height:75px;"></a>
                                     <?php
                                     }
-                                    if (str_contains($qq ['twiiter'], 'x.com')) {
-                                        ?><a href="<?php echo $qq ['twiiter']; ?>" target="_blank"><img src="../images/twiiter.png" style="height:75px;"></a>
-                                    <?php
-                                    }
-                                    if (str_contains($qq ['linktr'], 'linktr')) {
-                                        ?><a href="<?php echo $qq ['linktr']; ?>" target="_blank"><img src="../images/linktr.png" style="height:75px;"></a>
+                                    if (str_contains($qq ['twitter'], 'x.com')) {
+                                        ?><a href="<?php echo $qq ['twitter']; ?>" target="_blank"><img src="../images/twitter.png" style="height:75px;"></a>
                                     <?php
                                     }
                                     if (str_contains($qq ['musicarc'], 'metal-archives')) {
