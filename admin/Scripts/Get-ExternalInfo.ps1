@@ -17,6 +17,66 @@ $ConnectionString = "server=$address port=$Port uid=$UserName pwd=$Password data
 $Connection.ConnectionString = $ConnectionString
 $Connection.Open()
 
+#Finding External Links
+
+$Query = 'SELECT * From artist Limit 3'
+$Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+$DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+$DataSet = New-Object System.Data.DataSet
+$RecordCount = $dataAdapter.Fill($dataSet, "data")
+$data = $dataSet.Tables[0]
+ForEach ($artist in $data){
+$mb = $artist.MusicBrainz
+$mb = $mb.Replace('https://musicbrainz.org/artist/','')
+$id = $artist.id
+$site = "https://musicbrainz.org/ws/2/artist/" + $mb + "?inc=url-rels&fmt=json"
+$out = Invoke-WebRequest $site | ConvertFrom-Json
+$out = $out| Select-Object -expand relations
+   If ($artist.youtube -like "") {
+            ForEach ($site in $out){
+            If ($site.type -like "*youtube" )  {
+            $youtube = $site.url.resource
+            $Query = "update artist Set youtube = '$youtube' Where id = '$id'"
+            $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+            $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+            $DataSet = New-Object System.Data.DataSet
+            $RecordCount = $dataAdapter.Fill($dataSet, "data")
+            $DataSet.Tables[0]
+            }
+        }
+    }
+
+    If ([string]::IsNullOrEmpty($artist.instagram)) {
+            
+            ForEach ($ig in $out){
+                If ($ig.url -like "*instagram*" )  {
+                $instagram = $ig.url.resource
+                $Query = "update artist Set instagram = '$instagram' Where id = '$id'"
+                $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+                $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+                $DataSet = New-Object System.Data.DataSet
+                $RecordCount = $dataAdapter.Fill($dataSet, "data")
+                $DataSet.Tables[0]
+                }
+            }
+        }
+     If ([string]::IsNullOrEmpty($artist.wikipedia)) {
+            
+            ForEach ($fb in $out){
+                If ($fb.url -like "*facebook*" )  {
+                $facebook = $fb.url.resource
+                $Query = "update artist Set facebook = '$facebook' Where id = '$id'"
+                $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
+                $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
+                $DataSet = New-Object System.Data.DataSet
+                $RecordCount = $dataAdapter.Fill($dataSet, "data")
+                $DataSet.Tables[0]
+                }
+            }
+        }
+    
+}
+
 #Finding Album Image
 
 $Query = 'SELECT  ar.name AS "artist", al.name AS "record", al.image as "image", al.id AS "id" from album al, artist ar where al.artist_id = ar.id AND (al.image LIKE "" or  al.image IS NULL)'
