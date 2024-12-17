@@ -66,7 +66,7 @@ include("../include/config.php"); {
                                     <?php
                                     }
                                     if (str_contains($qq ['divas'], 'divas')) {
-                                        ?><a href="<?php echo $qq ['divas']; ?>" target="_blank"><img src="../images/dark-divas.png" style="height:75px;"></a>
+                                        ?><a href="<?php echo $qq ['divas']; ?>" target="_blank"><img src="../images/dark-divas.jpg" style="height:75px;"></a>
                                     <?php
                                     }
                                     if (str_contains($qq ['wikipedia'], 'wikipedia')) {
