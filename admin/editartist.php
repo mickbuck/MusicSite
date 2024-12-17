@@ -18,7 +18,16 @@ if (isset($_POST['update'])) {
     $rating = mysqli_real_escape_string($sql, $_POST['rating']);
     $site = mysqli_real_escape_string($sql, $_POST['site']);
     $facebook = mysqli_real_escape_string($sql, $_POST['facebook']);
-    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', rating = '$rating', site = '$site', facebook = '$facebook' where id = '$id'";
+    $youtube = mysqli_real_escape_string($sql, $_POST['youtube']);
+    $instagram = mysqli_real_escape_string($sql, $_POST['instagram']);
+    $spotify = mysqli_real_escape_string($sql, $_POST['spotify']);
+    $divas = mysqli_real_escape_string($sql, $_POST['divas']);
+    $wikipedia = mysqli_real_escape_string($sql, $_POST['wikipedia']);
+    $linktr = mysqli_real_escape_string($sql, $_POST['linktr']);
+    $musicarc = mysqli_real_escape_string($sql, $_POST['musicarc']);
+    $bandcamp = mysqli_real_escape_string($sql, $_POST['bandcamp']);
+
+    $sql_insert =  "UPDATE artist Set name = '$name', MusicBrainz = '$musicbrainz', Image = '$image', officalsite = '$website', clear = '$clear', banner = '$banner', tolistento = '$tolistento', rating = '$rating', site = '$site', facebook = '$facebook', youtube = '$youtube', instagram = '$instagram', spotify = '$spotify', divas = '$divas', wikipedia = '$wikipedia', linktr = '$linktr', musicarc = '$musicarc', bandcamp = '$bandcamp' where id = '$id'";
 
     if (mysqli_query($sql, $sql_insert)) {
         echo '<script>alert("Artist updated successfully")</script>';
@@ -60,6 +69,22 @@ if (isset($_POST['update'])) {
             <input type="text" name="site" value="<?php echo $qq['site']; ?>" style="width:500px">
             <h2 class="white"><label>Facebook:</label>
             <input type="text" name="facebook" value="<?php echo $qq['facebook']; ?>" style="width:500px">
+            <h2 class="white"><label>Youtube:</label>
+            <input type="text" name="youtube" value="<?php echo $qq['youtube']; ?>" style="width:500px">
+            <h2 class="white"><label>Spotify:</label>
+            <input type="text" name="spotify" value="<?php echo $qq['spotify']; ?>" style="width:500px">
+            <h2 class="white"><label>Instagram:</label>
+            <input type="text" name="instagram" value="<?php echo $qq['instagram']; ?>" style="width:500px">
+            <h2 class="white"><label>Divas:</label>
+            <input type="text" name="divas" value="<?php echo $qq['divas']; ?>" style="width:500px">
+            <h2 class="white"><label>Wikipedia:</label>
+            <input type="text" name="wikipedia" value="<?php echo $qq['wikipedia']; ?>" style="width:500px">
+            <h2 class="white"><label>Linktr:</label>
+            <input type="text" name="linktr" value="<?php echo $qq['linktr']; ?>" style="width:500px">
+            <h2 class="white"><label>metal-archives:</label>
+            <input type="text" name="musicarc" value="<?php echo $qq['musicarc']; ?>" style="width:500px">
+            <h2 class="white"><label>Bandcamp:</label>
+            <input type="text" name="bandcamp" value="<?php echo $qq['bandcamp']; ?>" style="width:500px">
         </h2>   
         <table class="center">
             <tr>
