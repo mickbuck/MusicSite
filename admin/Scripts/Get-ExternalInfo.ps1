@@ -19,7 +19,7 @@ $Connection.Open()
 
 #Finding External Links
 
-$Query = 'SELECT * From artist'
+$Query = 'SELECT * From artist ORDER BY rand() LIMIT 500'
 $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
 $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
 $DataSet = New-Object System.Data.DataSet
@@ -74,7 +74,7 @@ $out = $out| Select-Object -expand relations
                 }
             }
         }
-    Start-Sleep 5
+    Start-Sleep 2
 }
 
 #Finding Album Image
