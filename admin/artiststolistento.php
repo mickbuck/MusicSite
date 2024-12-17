@@ -86,57 +86,7 @@ include("../include/config.php"); {
                                     <?php
                                     }
 
-                                    ?>
-
-
-
-
-
-
-
-
-
-                                
-                                <?php if ($other > '0') {
-                                    if (str_contains($qq['youtube'], 'youtube')) {
-                                ?><a href="<?php echo $qq['youtube']; ?>" target="_blank"><img src="../images/youtube.png" style="height:100px;"></a>
-                                    <?php
-                                    }
-                                }
-                                if (str_contains($other, 'facebook')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/facebook.png" style="height:25%;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'instagram')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/instagram.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'spotify')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/spotify.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'divas')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/dark-divas.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'wikipedia')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/wikipedia.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'linktr')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/linktr.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'archives')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/metal-archives.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                if (str_contains($other, 'bandcamp')) {
-                                    ?><a href="<?php echo $qq['site']; ?>" target="_blank"><img src="../images/bandcamp.png" style="height:100px;"></a>
-                                <?php
-                                }
-                                ?>
-                            
+                                ?>                           
                             </h5>
                         </div>
                     </div><br>
