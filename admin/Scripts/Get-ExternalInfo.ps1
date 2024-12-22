@@ -135,7 +135,7 @@ ForEach ($test in $data){
     $out = Invoke-WebRequest $site | ConvertFrom-Json
     $art = $out| Select-Object -expand artists
     $artband = $art | Select-Object -expand strArtistThumb
-    #$artband = "$artband" + "/preview"
+    $artband = "$artband" + "/preview"
     IF(Test-path "$imagepath/$update"){ }Else{
     New-item -Path "$imagepath/$update" -ItemType Directory}
     If(!(Test-Path "$imagepath/$update/band.jpg")){
