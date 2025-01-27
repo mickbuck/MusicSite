@@ -9,3 +9,4 @@ test*.*
 .vscode/settings.json
 .vscode/extensions.json
 Testing/*
+admin/Scripts/Unzip files.ps1
