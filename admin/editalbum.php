@@ -1,8 +1,18 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 include("../include/config.php"); {
     $id = ($_GET["id"]);
     $q = "SELECT * FROM album Where id = $id;";
+    $ao = "SELECT * from album_owner where album_id = $id;";
     $albumname = mysqli_query($sql, $q);
+    $aowner = mysqli_query($sql, $ao);
+    $aon = "SELECT * from customers";
+    $aoname = mysqli_query($sql, $aon);
 }
 if (isset($_POST['update'])) {
     $id = ($_GET["id"]);
@@ -21,11 +31,15 @@ if (isset($_POST['update'])) {
     $wanted = mysqli_real_escape_string($sql, $_POST['wanted']);
     $barcode = mysqli_real_escape_string($sql, $_POST['barcode']);
     $recordlabel = mysqli_real_escape_string($sql, $_POST['recordlabel']);
+    $owner = mysqli_real_escape_string($sql, $_POST['owner']);
+    $sql_updateowner = "UPDATE album_owner Set album_owner = $owner where album_id = '$id'";
     $sql_insert =  "UPDATE album Set name = '$name', format = '$format', cat_number = '$cat', image = '$image', dateordered = '$dateordered', year = '$year', discogs = '$discogs',  onorder = '$onorder', cost = '$cost', trackingnum = '$tracking', wanted = '$wanted', barcode = '$barcode', record_label_id = '$recordlabel' where id = '$id'";
     if (mysqli_query($sql, $sql_insert)) {
+        if (mysqli_query($sql, $sql_updateowner)) {
         echo '<script>alert("Album updated successfully")</script>';
         $place = "editalbum.php?id=$id"; // replace, duh.
         echo "<script>self.location='" . $place . "';</script>\n";
+        }
     }
 }
 ?>
@@ -39,7 +53,8 @@ if (isset($_POST['update'])) {
     <div class="container mt-5">
         <div class="row mt-4">
             <?php $qq = mysqli_fetch_array($albumname) ?>
-            <form method="POST">
+            <?php $oq = mysqli_fetch_array($aowner) ?>
+                <form method="POST">
                 <h1 class="white">Edit Album</h1>
                 <h2 class="white"><label>Album Name :</label>
                     <input type="text" name="title" value="<?php echo $qq['name']; ?>">
@@ -61,7 +76,8 @@ if (isset($_POST['update'])) {
                     <input type="text" name="discogs" value="<?php echo $qq['discogs']; ?>">
                 </h2>
                 <h2 class="white"><label>Image:</label>
-                    <input type="text" name="image" value="<?php echo $qq['image']; ?>">
+                    <input type="text" name="image" value="<?php echo $qq['image']; ?>"> <br>
+                    <img src="<?php echo $qq['image'];?>" style="width:250px;">
                 </h2>
                 <h2 class="white"><label>Date Ordered:</label>
                     <input type="date" name="dateordered" value="<?php echo $qq['dateordered']; ?>">
@@ -80,6 +96,9 @@ if (isset($_POST['update'])) {
                 </h2>
                 <h2 class="white"><label>Bar Code:</label>
                     <input type="text" name="barcode" value="<?php echo $qq['barcode']; ?>">
+                </h2>
+                <h2 class="white"><label>Owner:</label>
+                    <input type="text" name="owner" value="<?php echo $oq['album_owner']; ?>">
                 </h2>
                 <br>
                 <h2><input type="submit" value="Update" name="update"></h2>
