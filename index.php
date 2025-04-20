@@ -1,7 +1,13 @@
 <?php
     include("include/config.php");
 	{
-    $q = "SELECT  DISTINCT (artist.name), artist.id, artist.Image from album, artist where album.artist_id = artist.id AND (album.wanted IS NULL OR album.wanted < '1') AND (album.sold IS NULL OR album.sold < '1')  AND (album.format > '0') order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
+    $q = "SELECT DISTINCT artist.name, artist.id, artist.image FROM album JOIN artist ON album.artist_id = artist.id JOIN album_owner ON album_owner.album_id = album.id WHERE 
+    (album.wanted IS NULL OR album.wanted < '1') AND 
+    (album.sold IS NULL OR album.sold < '1') AND 
+    album.format > '0' AND 
+    (album_owner.album_owner NOT LIKE '3' AND  album_owner.album_owner NOT LIKE '2')
+ORDER BY 
+    UPPER(LTRIM(REPLACE(artist.name, 'The ', '')))";
     $query=mysqli_query($sql,$q);
     }
 ?>
@@ -81,7 +87,7 @@
                             }
                             ?></h6>
     	        	        <h5 class="card-title">
-                            <a href="byartist.php?id=<?php echo $qq['id'];?>"> <img src="<?php echo $qq['Image'];?>" alt="<?php echo $qq['name'];?>" style="width:98%;"></a>
+                            <a href="byartist.php?id=<?php echo $qq['id'];?>"> <img src="<?php echo $qq['image'];?>" alt="<?php echo $qq['name'];?>" style="width:98%;"></a>
                             </h5>
                         </div>
                       </div><br>
