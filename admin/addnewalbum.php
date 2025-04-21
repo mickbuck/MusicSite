@@ -1,11 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Setting up PHP/MY SQL Connection
 include("../include/config.php"); {
-	$id = ($_GET["id"]); ?>
-<?php
+
 	$q = "SELECT * from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
 	$f = "SELECT * from media";
 	$l = "SELECT * from record_label order by UPPER(LTRIM(Replace(record_label.name, 'The ', '')))";
+    $aon = "SELECT * from customers";
+    
+    $aoname = mysqli_query($sql, $aon);
 }
 $wanted = mysqli_query($sql, $q);
 $format = mysqli_query($sql, $f);
@@ -28,20 +33,32 @@ if (isset($_POST['album'])) {
 	if ($year <= '1990') {
 		$year = '0000';
 	}
-	$onorder = mysqli_real_escape_string($sql, $_POST['onorder']);
-	if ($onorder != '1') {
-		$onorder = '0';
-	}
-	$wanted = mysqli_real_escape_string($sql, $_POST['wanted']);
-	if ($wanted != '1') {
-		$wanted = '0';
-	}
+    $onorder = isset($_POST['onorder']) ? mysqli_real_escape_string($sql, $_POST['onorder']) : 0;
+    $wanted = isset($_POST['wanted']) ? mysqli_real_escape_string($sql, $_POST['wanted']) : 0;
+    $owner = mysqli_real_escape_string($sql, $_POST['Owner']);
 	$dateordered = mysqli_real_escape_string($sql, $_POST['dateordered']);
 	$dateordered = date('Y-m-d', strtotime(str_replace('-', '/', $dateordered)));
-	$sql_insert =  "INSERT INTO album (name, artist_id,format,cat_number,year,record_label_id,onorder,cost,wanted,dateordered) VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost,$wanted,'$dateordered')";
-	if (mysqli_query($sql, $sql_insert)) {
-		echo '<script>alert("Product added successfully")</script>';
-	}
+	$sql_insert =  "INSERT INTO album (name, artist_id, format, cat_number, year, record_label_id, onorder, cost, wanted, dateordered) 
+                VALUES ('$name','$artid','$formatid','$catno','$year',$record,$onorder,$cost,$wanted,'$dateordered')";
+
+$sql_get = "SELECT id FROM album WHERE artist_id = '$artid' AND name LIKE '$name' AND dateordered LIKE '$dateordered'";
+
+if (mysqli_query($sql, $sql_insert)) {
+    $result = mysqli_query($sql, $sql_get);
+    if ($row = mysqli_fetch_assoc($result)) {
+        $album_id = $row['id'];
+        $sql_insetown = "INSERT INTO album_owner (album_owner, album_id) VALUES ('$owner', '$album_id')";
+        mysqli_query($sql, $sql_insetown);
+        echo '<script>
+            alert("Product added successfully");
+            window.location.href = window.location.href;
+        </script>';
+    } else {
+        echo '<script>alert("Album ID not found")</script>';
+    }
+} else {
+    echo '<script>alert("Album insert failed")</script>';
+}
 }
 ?>
 <!--this is the display -->
@@ -111,7 +128,21 @@ if (isset($_POST['album'])) {
 			<label>On Order:</label>
 			<input type="checkbox" name="onorder" value="1"><br>
 			<label>Wanted:</label>
-			<input type="checkbox" name="wanted" value="1">
-		</h2>
+			<input type="checkbox" name="wanted" value="1"><br>
+            <label>Owner:</label>
+        <select name="Owner">
+			<?php
+			while ($data = mysqli_fetch_array($aoname, MYSQLI_ASSOC)) :;
+			?>
+				<option value="<?php echo $data["customer_id"];
+								?>">
+					<?php echo $data["name"];
+					?>
+				</option>
+			<?php
+			endwhile;
+			?>
+		</select>
+        </h2>
 		<h2><input type="submit" value="submit" name="album"></h2><br>
 	</form>

@@ -9,9 +9,9 @@ include("../include/config.php"); {
     $id = ($_GET["id"]);
     $q = "SELECT * FROM album Where id = $id;";
     $ao = "SELECT * from album_owner where album_id = $id;";
+    $aon = "SELECT * from customers";
     $albumname = mysqli_query($sql, $q);
     $aowner = mysqli_query($sql, $ao);
-    $aon = "SELECT * from customers";
     $aoname = mysqli_query($sql, $aon);
 }
 if (isset($_POST['update'])) {
