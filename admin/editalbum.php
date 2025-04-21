@@ -46,7 +46,7 @@ if (isset($_POST['update'])) {
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><?php echo $artname['name']; ?></title>
+    <title>Edit Album</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="center">
