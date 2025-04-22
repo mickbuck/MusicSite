@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     include("include/config.php");
 	{
     $q = "SELECT DISTINCT artist.name, artist.id, artist.image FROM album JOIN artist ON album.artist_id = artist.id JOIN album_owner ON album_owner.album_id = album.id WHERE 
