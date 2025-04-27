@@ -44,8 +44,8 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
                                 <?php
                                 $qart = $qq['artist_id'];
                                 $lart = $qq['record_label_id'];
-                                $wart = $qq['officesite'];
-                                $trademe = $$qq['ontrademe']
+                                $wart = isset($qq['officesite']) ? $qq['officesite'] : null;
+                                $trademe = isset($qq['ontrademe']) ? $qq['ontrademe'] : null;
                                 ?>
                                 <?php $art = "SELECT * FROM artist WHERE id='$qart'";
                                 $artist = mysqli_query($sql, $art); ?>
@@ -126,39 +126,39 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
 
             <a href="<?php echo $artname['MusicBrainz']; ?>" target="_blank"><img src="https://wiki.musicbrainz.org/images/a/a7/MusicBrainz_logo_135x135.png?e9e85" style="width:100px;height:75px;"></a>
             <?php 
-            if (str_contains($artname['youtube'], 'youtube')) {
+            if (isset($artname['youtube']) && str_contains($artname['youtube'], 'youtube')) {
                 ?><a href="<?php echo $artname['youtube']; ?>" target="_blank"><img src="images/youtube.png" style="height:75px;"></a>
                 <?php
             }
-            if (str_contains($artname['facebook'], 'facebook')) {
+            if (isset($artname['facebook']) && str_contains($artname['facebook'], 'facebook')) {
                 ?><a href="<?php echo $artname['facebook']; ?>" target="_blank"><img src="images/facebook.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['instagram'], 'instagram')) {
+            if (isset($artname['instagram']) && str_contains($artname['instagram'], 'instagram')) {
                 ?><a href="<?php echo $artname['instagram']; ?>" target="_blank"><img src="images/instagram.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['spotify'], 'spotify')) {
+            if (isset($artname['spotify']) && str_contains($artname['spotify'], 'spotify')) {
                 ?><a href="<?php echo $artname['spotify']; ?>" target="_blank"><img src="images/spotify.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['divas'], 'divas')) {
+            if (isset($artname['divas']) && str_contains($artname['divas'], 'divas')) {
                 ?><a href="<?php echo $artname['divas']; ?>" target="_blank"><img src="images/dark-divas.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['wikipedia'], 'wikipedia')) {
+            if (isset($artname['wikipedia']) && str_contains($artname['wikipedia'], 'wikipedia')) {
                 ?><a href="<?php echo $artname['wikipedia']; ?>" target="_blank"><img src="images/wikipedia.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['linktr'], 'linktr')) {
+            if (isset($artname['linktr']) && str_contains($artname['linktr'], 'linktr')) {
                 ?><a href="<?php echo $artname['linktr']; ?>" target="_blank"><img src="images/linktr.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['musicarc'], 'metal-archives')) {
+            if (isset($artname['musicarc']) && str_contains($artname['musicarc'], 'metal-archives')) {
                 ?><a href="<?php echo $artname['musicarc']; ?>" target="_blank"><img src="images/metal-archives.png" style="height:75px;"></a>
             <?php
             }
-            if (str_contains($artname['bandcamp'], 'bandcamp')) {
+            if (isset($artname['bandcamp']) && str_contains($artname['bandcamp'], 'bandcamp')) {
                 ?><a href="<?php echo $artname['bandcamp']; ?>" target="_blank"><img src="images/bandcamp.png" style="height:75px;"></a>
             <?php
             }
