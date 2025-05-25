@@ -1,4 +1,4 @@
-﻿#set-up needed for all scripts
+#set-up needed for all scripts
 Get-Variable -Exclude PWD,*Preference | Remove-Variable -EA 0
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $OS = [System.Environment]::OSVersion.Platform
@@ -16,6 +16,7 @@ $Connection = New-Object MySql.Data.MySqlClient.MySqlConnection
 $ConnectionString = "server=$address port=$Port uid=$UserName pwd=$Password database=$Database"
 $Connection.ConnectionString = $ConnectionString
 $Connection.Open()
+
 
 
 #Finding External Links
@@ -163,6 +164,7 @@ $data = $dataSet.Tables[0]
 ForEach ($test in $data){
     $tofind=$test.name
     Write-Host $tofind
+    Write-Host $tofind
     $tofind = $tofind.Replace('&','%26')
     $tofind = $tofind.Replace('+','%2B')
     $update = $test.id
@@ -171,6 +173,15 @@ ForEach ($test in $data){
     $out = Invoke-WebRequest $site | ConvertFrom-Json
     $art = $out| Select-Object -expand artists
     $artband = $art | Select-Object -expand strArtistBanner
+    $artlogo = $art | Select-Object -expand strArtistLogo
+    if ($artlogo) {
+    $outfile = "$imagepath/$update/banner.png"
+    $albumsavepath = "$imagestore/$update/banner.png"
+    $artband =  $artlogo
+    } 
+    Else {
+    $outfile = "$imagepath/$update/banner.jpg"
+    $albumsavepath = "$imagestore/$update/banner.jpg"}  
     $artlogo = $art | Select-Object -expand strArtistLogo
     if ($artlogo) {
     $outfile = "$imagepath/$update/banner.png"
@@ -354,5 +365,5 @@ ForEach ($test in $data){
             $DataSet.Tables[0]
         }
 }
-
+#>
 $Connection.Close()
