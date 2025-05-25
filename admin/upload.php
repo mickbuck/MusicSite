@@ -1,158 +1,111 @@
 <?php
-include("../include/config.php"); {
-    $id = ($_GET["id"]);
-}
-?>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><?php echo $artname['name']; ?></title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body class="center">
-<?php
+include("../include/config.php");
+$id = $_GET["id"] ?? null;
 
-$target_dir = "../images/" . "$id" . "/";
-$band_file = $target_dir . basename($_FILES["bandupload"]["name"]);
-$banner_file = $target_dir . basename($_FILES["bannerupload"]["name"]);
-$clear_file = $target_dir . basename($_FILES["clearupload"]["name"]);
-$bandFileType = strtolower(pathinfo($band_file,PATHINFO_EXTENSION));
-$bannerFileType = strtolower(pathinfo($banner_file,PATHINFO_EXTENSION));
-$clearFileType = strtolower(pathinfo($clear_file,PATHINFO_EXTENSION));
-$band_file = $target_dir . "band." . $bandFileType;
-$banner_file = $target_dir . "banner." . $bannerFileType;
-$clear_file = $target_dir . "clear." . $clearFileType;
+$band = $banner = $clear = 0;
 $uploadOk = 1;
 
+$target_dir = "../images/" . $id . "/";
+if (!is_dir($target_dir)) {
+    mkdir($target_dir, 0755, true); // create directory if missing
+}
 
-// Check if image file is a actual image or fake image
-if(isset($_POST["band"])) {
-  $check = getimagesize($_FILES["bandupload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $band_file . ".";
-    $uploadOk = 1;
-    $band = 1;
-  } else {
-    echo "File is not an image.";
-   $uploadOk = 0;
-  }
-} 
-if(isset($_POST["banner"])) {
+// Band
+if (isset($_FILES["bandupload"]) && $_FILES["bandupload"]["error"] === 0) {
+    $bandFileType = strtolower(pathinfo($_FILES["bandupload"]["name"], PATHINFO_EXTENSION));
+    $band_file = $target_dir . "band." . $bandFileType;
+
+    $check = getimagesize($_FILES["bandupload"]["tmp_name"]);
+    if ($check !== false) {
+        echo "File is an image - " . $band_file . ".";
+        if ($_FILES["bandupload"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        if (file_exists($band_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        if (!in_array($bandFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        if ($uploadOk) {
+            if (move_uploaded_file($_FILES["bandupload"]["tmp_name"], $band_file)) {
+                resizeImage($band_file, 300, 300);
+                $band = str_replace("../", "https://mymusic.mickbuck.com/", $band_file);
+                $band_insert = "UPDATE artist SET Image = '$band' WHERE id = '$id'";
+                mysqli_query($sql, $band_insert);
+                echo "The band file has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading the band file.";
+            }
+        }
+    } else {
+        echo "File is not an image.";
+    }
+}
+
+// Banner
+if (isset($_FILES["bannerupload"]) && $_FILES["bannerupload"]["error"] === 0) {
+    $bannerFileType = strtolower(pathinfo($_FILES["bannerupload"]["name"], PATHINFO_EXTENSION));
+    $banner_file = $target_dir . "banner." . $bannerFileType;
+
     $check = getimagesize($_FILES["bannerupload"]["tmp_name"]);
-    if($check !== false) {
-      echo "File is an image - " . $banner_file . ".";
-      $uploadOk = 1;
-      $banner = 1;
-    } else {
-      echo "File is not an image.";
-     $uploadOk = 0;
+    if ($check !== false) {
+        if ($_FILES["bannerupload"]["size"] > 500000 || file_exists($banner_file) || !in_array($bannerFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+            echo "Sorry, banner file failed checks.";
+        } else {
+            if (move_uploaded_file($_FILES["bannerupload"]["tmp_name"], $banner_file)) {
+                resizeImage($banner_file, 300, 300);
+                $banner = str_replace("../", "https://mymusic.mickbuck.com/", $banner_file);
+                $banner_insert = "UPDATE artist SET banner = '$banner' WHERE id = '$id'";
+                mysqli_query($sql, $banner_insert);
+                echo "The banner file has been uploaded.";
+            }
+        }
     }
-  } 
-  if(isset($_POST["clear"])) {
+}
+
+// Clear
+if (isset($_FILES["clearupload"]) && $_FILES["clearupload"]["error"] === 0) {
+    $clearFileType = strtolower(pathinfo($_FILES["clearupload"]["name"], PATHINFO_EXTENSION));
+    $clear_file = $target_dir . "clear." . $clearFileType;
+
     $check = getimagesize($_FILES["clearupload"]["tmp_name"]);
-    if($check !== false) {
-      echo "File is an image - " . $clear_file . ".";
-      $uploadOk = 1;
-      $clear = 1;
-    } else {
-      echo "File is not an image.";
-     $uploadOk = 0;
+    if ($check !== false) {
+        if ($_FILES["clearupload"]["size"] > 500000 || file_exists($clear_file) || !in_array($clearFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+            echo "Sorry, clear file failed checks.";
+        } else {
+            if (move_uploaded_file($_FILES["clearupload"]["tmp_name"], $clear_file)) {
+                resizeImage($clear_file, 300, 300);
+                $clear = str_replace("../", "https://mymusic.mickbuck.com/", $clear_file);
+                $clear_insert = "UPDATE artist SET clear = '$clear' WHERE id = '$id'";
+                mysqli_query($sql, $clear_insert);
+                echo "The clear file has been uploaded.";
+            }
+        }
     }
-  } 
-
-
-
-// Check if file already exists
-if (file_exists($band_file)) {
-  echo "Sorry, file already exists.";
-  $uploadOk = 0;
-}
-if (file_exists($banner_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-  }
-  if (file_exists($clear_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-  }
-
-//Check file size
- if ($_FILES["bandupload"]["size"] > 500000) {
-  echo "Sorry, your file is too large.";
-  $uploadOk = 0;
-}
-if ($_FILES["bannerupload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-if ($_FILES["clearupload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-  }
-
-// Allow certain file formats
-if($bandFileType != "jpg" && $bandFileType != "png" && $bandFileType != "jpeg"
-&& $bandFileType != "gif" && $bannerFileType != "jpg" && $bannerFileType != "png" && $bannerFileType != "jpeg"
-&& $bannerFileType != "gif" && $clearFileType != "jpg" && $clearFileType != "png" && $clearFileType != "jpeg"
-&& $clearFileType != "gif") {
-   echo nl2br ("  
-   Sorry, \n  only JPG, JPEG, PNG & GIF files are allowed.");
-   $uploadOk = 0;
 }
 
-// Check if $uploadOk is set to 0 by an error
-if ($band == '1'){
- if ($uploadOk == 0) {
-   echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
- } else {
-   if (move_uploaded_file($_FILES["bandupload"]["tmp_name"], $band_file)) {
- //fileToUpload
-    $band = str_replace("../","https://mymusic.mickbuck.com/","$band_file");
-    $band_insert =  "UPDATE artist Set Image = '$band' where id = '$id'";
-    if (mysqli_query($sql, $band_insert)) {
-     echo "The file ". htmlspecialchars( basename( $_FILES["bandupload"]["name"])). " has been uploaded.";
+// Resize function
+function resizeImage($file, $width, $height) {
+    list($originalWidth, $originalHeight, $type) = getimagesize($file);
+    switch ($type) {
+        case IMAGETYPE_JPEG: $src = imagecreatefromjpeg($file); break;
+        case IMAGETYPE_PNG:  $src = imagecreatefrompng($file);  break;
+        case IMAGETYPE_GIF:  $src = imagecreatefromgif($file);  break;
+        default: return false;
     }
-   } else {
-    echo "Sorry, there was an error uploading your file.";
-   }
- }
+    $dst = imagecreatetruecolor($width, $height);
+    imagecopyresampled($dst, $src, 0, 0, 0, 0, $width, $height, $originalWidth, $originalHeight);
+    switch ($type) {
+        case IMAGETYPE_JPEG: imagejpeg($dst, $file); break;
+        case IMAGETYPE_PNG:  imagepng($dst, $file);  break;
+        case IMAGETYPE_GIF:  imagegif($dst, $file);  break;
+    }
+    imagedestroy($src);
+    imagedestroy($dst);
 }
-
-if ($banner == '1'){
-    if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-   // if everything is ok, try to upload file
-    } else {
-      if (move_uploaded_file($_FILES["bannerupload"]["tmp_name"], $banner_file)) {
-    //fileToUpload
-       $banner = str_replace("../","https://mymusic.mickbuck.com/","$banner_file");
-       $banner_insert =  "UPDATE artist Set banner = '$banner' where id = '$id'";
-       if (mysqli_query($sql, $banner_insert)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["bannerupload"]["name"])). " has been uploaded.";
-       }
-      } else {
-       echo "Sorry, there was an error uploading your file.";
-      }
-    }
-   }
-
-   if ($clear == '1'){
-    if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-   // if everything is ok, try to upload file
-    } else {
-      if (move_uploaded_file($_FILES["clearupload"]["tmp_name"], $clear_file)) {
-    //fileToUpload
-       $clear = str_replace("../","https://mymusic.mickbuck.com/","$clear_file");
-       $clear_insert =  "UPDATE artist Set clear = '$clear' where id = '$id'";
-       if (mysqli_query($sql, $clear_insert)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["clearupload"]["name"])). " has been uploaded.";
-       }
-      } else {
-       echo "Sorry, there was an error uploading your file.";
-      }
-    }
-   }
 ?>
 <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
-  </body>
