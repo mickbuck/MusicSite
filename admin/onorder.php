@@ -1,7 +1,5 @@
 <?php
 include("../include/config.php"); {
-    $id = ($_GET["id"]); ?>
-<?php
     $q = "SELECT  DISTINCT (artist.name), album.name, artist.id, album.id AS albumid, album.image, album.onorder, album.dateordered, artist.name AS artistname, album.trackingnum, album.presale from album, artist where album.artist_id = artist.id And album.onorder LIKE '1' order by dateordered, artist.name, album.name";
     $wanted = mysqli_query($sql, $q);
 }
