@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include("include/config.php"); {
     $id = ($_GET["id"]);
     $q = "SELECT * FROM album Where artist_id = $id AND (wanted IS NULL OR wanted != '1') AND album.format > '0' AND (album.sold NOT LIKE '1' OR album.sold IS NULL) order by UPPER(LTRIM(Replace(name, 'The ', '')));";
