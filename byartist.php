@@ -188,21 +188,34 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
     ));
     $json = curl_exec($curl);
     $data = json_decode($json, true);
-    $data = $data['release-groups'];
-    echo "<table border='1' align='center' style='color:#F5F5F5'>";
-    foreach ($data as $stand) if ($stand['primary-type'] == 'Album' && empty($stand['secondary-types'])) {
-        $title = $stand['title'];
-        $type = $stand['primary-type'];
-        $date = $stand['first-release-date'];
-        // Output a row
+
+if (!isset($data['release-groups']) || !is_array($data['release-groups'])) {
+    exit;
+}
+
+$releaseGroups = $data['release-groups'];
+
+echo "<table border='1' align='center' style='color:#F5F5F5'>";
+
+foreach ($releaseGroups as $stand) {
+    if (
+        isset($stand['primary-type']) &&
+        $stand['primary-type'] === 'Album' &&
+        empty($stand['secondary-types'])
+    ) {
+        $title = $stand['title'] ?? '';
+        $type  = $stand['primary-type'];
+        $date  = $stand['first-release-date'] ?? '';
+
         echo "<tr>";
-        echo "<td>$title  </td>";
-        echo "<td>Format:  $type   </td>";
-        echo "<td>Release Date:  $date  </td>"; ?>
-    <?php
+        echo "<td>" . htmlspecialchars($title) . "</td>";
+        echo "<td>Format: " . htmlspecialchars($type) . "</td>";
+        echo "<td>Release Date: " . htmlspecialchars($date) . "</td>";
         echo "</tr>";
     }
-    echo "</table>"; ?>
+}
+
+echo "</table>" ?>;
     <br>
     <h2 class=tal><a href="javascript:history.back()">Back</a></h2>
     </body>
