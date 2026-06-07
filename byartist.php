@@ -172,8 +172,12 @@ while ($artname = mysqli_fetch_array($artistname)) { ?>
     <h2 class=white>MusicBrainz Album Releases by This Artist:</h2>
     <?php
     //Getting release information from MusicBrainz
+   if (!empty($mb)) {
     $mb = strrchr($mb, '/');
-    $mb = str_replace('/', "", $mb);
+    $mb = str_replace('/', '', $mb);
+    } else {
+    $mb = '';
+    }
     $connect_api_url = "http://musicbrainz.org/ws/2/artist/$mb?inc=release-groups&fmt=json";
     $connect_api_key = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
     $curl = curl_init();
