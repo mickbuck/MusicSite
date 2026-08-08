@@ -3,10 +3,38 @@
 include("../include/config.php"); {
 	$id = ($_GET["id"]); ?>
 <?php
+function convertBoldUnicode($text) {
+    $result = '';
+
+    foreach (preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY) as $char) {
+        $code = mb_ord($char);
+
+        // Mathematical Bold Capital A-Z
+        if ($code >= 0x1D400 && $code <= 0x1D419) {
+            $result .= chr($code - 0x1D400 + ord('A'));
+        }
+        // Mathematical Bold Small a-z
+        elseif ($code >= 0x1D41A && $code <= 0x1D433) {
+            $result .= chr($code - 0x1D41A + ord('a'));
+        }
+        else {
+            $result .= $char;
+        }
+    }
+
+    return $result;
+}
+
+$text = $_POST['text'] ?? '';
+$standard = convertBoldUnicode($text);
+?>
+
+
+<?php
 	# $q = "SELECT * from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
 }
 if (isset($_POST['artist'])) {
-	$artist = mysqli_real_escape_string($sql, trim($_POST['Art'] ?? ''));	
+	$artist = mysqli_real_escape_string($sql, trim(convertBoldUnicode($_POST['Art'] ?? '')));	
 	$tolisten = mysqli_real_escape_string($sql, $_POST['tolisten']);
 	$site = mysqli_real_escape_string($sql, trim($_POST['site']));
 	if ($tolisten != '1') {  
@@ -25,10 +53,6 @@ if (isset($_POST['artist'])) {
 	}
 	elseif (str_contains($site, 'youtube')) {
 		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,youtube) VALUES ('$artist','$tolisten','$site')";
-	}
-	
-	elseif (str_contains($site, 'instagram')) {
-		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,instagram) VALUES ('$artist','$tolisten','$site')";
 	}
 	elseif (str_contains($site, 'spotify')) {
 		$sql_insert =  "INSERT IGNORE INTO artist (name,tolistento,spotify) VALUES ('$artist','$tolisten','$site')";
