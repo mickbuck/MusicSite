@@ -6,9 +6,9 @@ include("../include/config.php"); {
 	# $q = "SELECT * from artist order by UPPER(LTRIM(Replace(artist.name, 'The ', '')))";
 }
 if (isset($_POST['artist'])) {
-	$artist = mysqli_real_escape_string($sql, $_POST['Art']);
+	$artist = mysqli_real_escape_string($sql, trim($_POST['Art'] ?? ''));	
 	$tolisten = mysqli_real_escape_string($sql, $_POST['tolisten']);
-	$site = mysqli_real_escape_string($sql, $_POST['site']);
+	$site = mysqli_real_escape_string($sql, trim($_POST['site']));
 	if ($tolisten != '1') {
 		$tolisten = '0';
 	}
