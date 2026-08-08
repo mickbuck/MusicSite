@@ -1,5 +1,5 @@
 <?php
-// Setting up PHP/MY SQL Connection
+// Setting up PHP/MY SQL Connection Adding to allow push
 include("../include/config.php"); {
 	$id = ($_GET["id"]); ?>
 <?php
