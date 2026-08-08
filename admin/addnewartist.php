@@ -9,7 +9,7 @@ if (isset($_POST['artist'])) {
 	$artist = mysqli_real_escape_string($sql, trim($_POST['Art'] ?? ''));	
 	$tolisten = mysqli_real_escape_string($sql, $_POST['tolisten']);
 	$site = mysqli_real_escape_string($sql, trim($_POST['site']));
-	if ($tolisten != '1') {
+	if ($tolisten != '1') {  
 		$tolisten = '0';
 	}
 	$listenorder = mysqli_real_escape_string($sql, $_POST['listenorder']);
